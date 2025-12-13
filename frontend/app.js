@@ -10,8 +10,8 @@ async function fetchConfig() {
         appConfig = await response.json();
     } catch (error) {
         console.error('Error fetching config:', error);
-        // No fallback values - config must come from backend
-        showNotification('❌ Error al cargar la configuración', 'error');
+        // Use fallback values if API fails
+        appConfig = { whatsappNumber: '5491131095557', contactEmail: 'info@moncton.com.ar' };
     }
 }
 
