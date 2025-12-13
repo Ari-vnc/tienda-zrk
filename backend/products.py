@@ -8,7 +8,7 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": '/img/asln-0002.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
     {
         "sku": 'ASLV-0002',
@@ -17,7 +17,7 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": '/img/aslv-0002.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
     {
         "sku": 'ASLA-0002',
@@ -26,7 +26,7 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": '/img/asla-0002.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
     {
         "sku": 'COUR-0001',
@@ -35,7 +35,7 @@ products = [
         "price": 15000,
         "category": 'niña',
         "image": '/img/cour-0001.avif',
-        "talles": ['180 cm', '185 cm', '190 cm', '205 cm']
+        "talles": ['18 cm', '18.5 cm', '19 cm', '20.5 cm']
     },
     {
         "sku": 'COUN-0001',
@@ -44,7 +44,7 @@ products = [
         "price": 15000,
         "category": 'niña',
         "image": '/img/coun-0001.avif',
-        "talles": ['185 cm', '190 cm', '195 cm', '200 cm', '205 cm']
+        "talles": ['18.5 cm', '19 cm', '19.5 cm', '20 cm', '20.5 cm']
     },
     {
         "sku": 'BSLA-0001',
@@ -53,7 +53,7 @@ products = [
         "price": 15000,
         "category": ['niño', 'niña'],
         "image": '/img/bsla-0001.avif',
-        "talles": ['210 cm', '220 cm', '230 cm']
+        "talles": ['21 cm', '22 cm', '23 cm']
     },
     {
         "sku": 'BSLR-0001',
@@ -62,7 +62,7 @@ products = [
         "price": 15000,
         "category": 'niña',
         "image": '/img/bslr-0001.avif',
-        "talles": ['210 cm', '220 cm', '230 cm']
+        "talles": ['21 cm', '22 cm', '23 cm']
     },
     {
         "sku": 'BSLG-0001',
@@ -71,7 +71,7 @@ products = [
         "price": 15000,
         "category": ['niño', 'niña'],
         "image": '/img/bslg-0001.avif',
-        "talles": ['210 cm', '220 cm', '230 cm']
+        "talles": ['21 cm', '22 cm', '23 cm']
     },
     {
         "sku": 'ASLN-0001',
@@ -80,7 +80,7 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": '/img/asln-0001.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
     {
         "sku": 'ASLA-0001',
@@ -89,7 +89,7 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": '/img/asla-0001.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
     {
         "sku": 'ASLV-0001',
@@ -98,6 +98,6 @@ products = [
         "price": 9500,
         "category": ['niño', 'niña'],
         "image": 'img/aslv-0001.avif',
-        "talles": ['190 cm', '200 cm', '210 cm']
+        "talles": ['19 cm', '20 cm', '21 cm']
     },
 ]
