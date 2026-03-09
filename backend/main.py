@@ -14,10 +14,10 @@ from .config import settings
 limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
-    title="Tienda Online API",
-    description="API segura para tienda de productos infantiles",
-    version="1.0.0",
-    docs_url="/docs" if settings.DEBUG else None,  # Disable docs in production
+    title="NUVA — Ropa de Mujer Juvenil",
+    description="API del catálogo de ropa femenina NUVA",
+    version="2.0.0",
+    docs_url="/docs" if settings.DEBUG else None,
     redoc_url="/redoc" if settings.DEBUG else None
 )
 
@@ -39,152 +39,149 @@ app.add_middleware(
 @app.middleware("http")
 async def add_security_headers(request: Request, call_next):
     response = await call_next(request)
-    
+
     if settings.ENABLE_SECURITY_HEADERS:
-        # Prevent clickjacking
         response.headers["X-Frame-Options"] = "DENY"
-        # Prevent MIME sniffing
         response.headers["X-Content-Type-Options"] = "nosniff"
-        # Enable XSS protection
         response.headers["X-XSS-Protection"] = "1; mode=block"
-        # Content Security Policy
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; "
-            "script-src 'self' 'unsafe-inline'; "
+            "script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "img-src 'self' data: http: https: blob:; "
             "font-src 'self' https://fonts.gstatic.com; "
             "connect-src 'self'; "
             "frame-ancestors 'none';"
         )
-        # Referrer Policy
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-        # Permissions Policy
         response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
-    
+
     return response
 
-# API Endpoints
+
+# ── API Endpoints ──────────────────────────────────────────────────────────────
+
 @app.get("/api/products")
 @limiter.limit(settings.RATE_LIMIT_PER_MINUTE)
-async def get_products(request: Request):
-    """Get all products with rate limiting"""
+async def get_products(request: Request, category: str = None):
+    """Devuelve todos los productos, con filtro opcional por categoría."""
+    if category and category != "todas":
+        filtered = [p for p in products if p["category"] == category]
+        return filtered
     return products
+
 
 @app.get("/api/config")
 @limiter.limit("30/minute")
 async def get_config(request: Request):
-    """Get public configuration (contact info)"""
+    """Configuración pública (datos de contacto y redes sociales)."""
     return {
         "whatsappNumber": settings.WHATSAPP_NUMBER,
-        "contactEmail": settings.CONTACT_EMAIL
+        "contactEmail": settings.CONTACT_EMAIL,
+        "instagramUrl": settings.INSTAGRAM_URL,
+        "tiktokUrl": settings.TIKTOK_URL,
     }
 
-# Mount the frontend directory to serve static files
+
+# ── Página Mayorista ───────────────────────────────────────────────────────────
+
+@app.get("/mayorista")
+async def mayorista_page():
+    """Página de ventas mayoristas."""
+    mayorista_path = Path("frontend/mayorista.html")
+    if mayorista_path.is_file():
+        return FileResponse(mayorista_path)
+    raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
+# ── Página Mantenimiento ───────────────────────────────────────────────────────
+
+@app.get("/mantenimiento")
+async def mantenimiento_page():
+    """Página de mantenimiento del sitio."""
+    mantenimiento_path = Path("frontend/mantenimiento.html")
+    if mantenimiento_path.is_file():
+        return FileResponse(mantenimiento_path)
+    raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
+# ── Static Files ───────────────────────────────────────────────────────────────
+
+# Mount static assets
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
-# Serve index.html at root
+
 @app.get("/")
 async def read_index():
-    return FileResponse('frontend/index.html')
+    return FileResponse("frontend/index.html")
 
-# Serve images from img directory
+
 @app.get("/img/{filename}")
 async def serve_image(filename: str):
-    """
-    Serve image files from the img directory with security validation
-    """
-    # Strict validation to prevent directory traversal
     if not filename or ".." in filename or "/" in filename or "\\" in filename:
         raise HTTPException(status_code=404, detail="File not found")
-    
-    # Whitelist allowed image extensions
-    allowed_extensions = {'.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.webp', '.avif'}
+
+    allowed_extensions = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".webp", ".avif"}
     file_ext = Path(filename).suffix.lower()
-    
+
     if file_ext not in allowed_extensions:
         raise HTTPException(status_code=404, detail="File not found")
-    
-    # Construct safe file path
+
     img_dir = Path("frontend/img").resolve()
     file_path = (img_dir / filename).resolve()
-    
-    # Ensure the resolved path is within img directory
+
     try:
         file_path.relative_to(img_dir)
     except ValueError:
-        # Path is outside img directory
         raise HTTPException(status_code=404, detail="File not found")
-    
-    # Check if file exists
+
     if file_path.is_file():
         return FileResponse(file_path)
-    
+
     raise HTTPException(status_code=404, detail="File not found")
 
 
-# Serve other static files with improved security
 @app.get("/{filename}")
 async def serve_frontend_file(filename: str):
-    """
-    Serve frontend files with enhanced path traversal protection
-    """
-    # Strict validation to prevent directory traversal
     if not filename or ".." in filename or "/" in filename or "\\" in filename:
         raise HTTPException(status_code=404, detail="File not found")
-    
-    # Whitelist allowed file extensions
-    allowed_extensions = {'.html', '.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.webp', '.avif'}
+
+    allowed_extensions = {".html", ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".webp", ".avif"}
     file_ext = Path(filename).suffix.lower()
-    
+
     if file_ext not in allowed_extensions:
-        # Return index.html for potential SPA routing
-        return FileResponse('frontend/index.html')
-    
-    # Construct safe file path
+        return FileResponse("frontend/index.html")
+
     frontend_dir = Path("frontend").resolve()
     file_path = (frontend_dir / filename).resolve()
-    
-    # Ensure the resolved path is within frontend directory
+
     try:
         file_path.relative_to(frontend_dir)
     except ValueError:
-        # Path is outside frontend directory
         raise HTTPException(status_code=404, detail="File not found")
-    
-    # Check if file exists
+
     if file_path.is_file():
         return FileResponse(file_path)
-    
-    # Fallback to index.html
-    return FileResponse('frontend/index.html')
 
-# Health check endpoint
+    return FileResponse("frontend/index.html")
+
+
+# ── Health Check ──────────────────────────────────────────────────────────────
+
 @app.get("/health")
 async def health_check():
-    """Health check endpoint for monitoring"""
-    return {"status": "healthy", "environment": settings.ENVIRONMENT}
+    return {"status": "healthy", "app": "nuva", "environment": settings.ENVIRONMENT}
 
-# Custom error handlers
+
+# ── Error Handlers ────────────────────────────────────────────────────────────
+
 @app.exception_handler(404)
 async def not_found_handler(request: Request, exc: HTTPException):
-    """Custom 404 handler that doesn't leak information"""
-    return JSONResponse(
-        status_code=404,
-        content={"detail": "Resource not found"}
-    )
+    return JSONResponse(status_code=404, content={"detail": "Recurso no encontrado"})
+
 
 @app.exception_handler(500)
 async def internal_error_handler(request: Request, exc: Exception):
-    """Custom 500 handler that doesn't expose internal details"""
-    # Log the actual error internally (you should add proper logging)
     if settings.DEBUG:
-        return JSONResponse(
-            status_code=500,
-            content={"detail": str(exc)}
-        )
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Internal server error"}
-    )
-
+        return JSONResponse(status_code=500, content={"detail": str(exc)})
+    return JSONResponse(status_code=500, content={"detail": "Error interno del servidor"})

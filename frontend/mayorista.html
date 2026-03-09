@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="NUVA Mayorista — Comprá ropa de mujer juvenil al por mayor. Pantalones, joggers y camperas.">
+    <title>Mayorista — NUVA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --clr-bg: #faf9f8;
+            --clr-nude: #e8d5cc;
+            --clr-nude-dark: #c9a89a;
+            --clr-blush: #f2e6e1;
+            --clr-text: #2a2017;
+            --clr-text-2: #7a6b60;
+            --clr-text-3: #b09e94;
+            --clr-border: #e8e0dc;
+            --clr-black: #1a1410;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-full: 9999px;
+            --shadow-sm: 0 2px 8px rgba(42, 32, 23, 0.06);
+            --shadow-md: 0 6px 24px rgba(42, 32, 23, 0.10);
+            font-family: 'Raleway', system-ui, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            line-height: 1.65;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 249, 248, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--clr-border);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--clr-text);
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-back {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--clr-text-2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--clr-text);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #fdf5f1 0%, #f0e4dd 100%);
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .hero-chip {
+            display: inline-block;
+            padding: 5px 16px;
+            background: var(--clr-nude);
+            border-radius: var(--radius-full);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--clr-nude-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 300;
+            color: var(--clr-text);
+            margin-bottom: 14px;
+        }
+
+        .hero h1 strong {
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: var(--clr-text-2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Layout */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--clr-text);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--clr-nude);
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .info-card {
+            background: #fff;
+            border: 1.5px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-card-icon {
+            font-size: 1.6rem;
+        }
+
+        .info-card-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--clr-text-3);
+        }
+
+        .info-card-value {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--clr-text);
+        }
+
+        .info-card-desc {
+            font-size: 0.85rem;
+            color: var(--clr-text-2);
+        }
+
+        /* Form */
+        .contact-form {
+            background: #fff;
+            border: 1.5px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--clr-text-2);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 11px 14px;
+            border: 1.5px solid var(--clr-border);
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            font-family: inherit;
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--clr-nude-dark);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .submit-btn {
+            padding: 14px 32px;
+            background: var(--clr-text);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--clr-nude-dark);
+            transform: translateY(-2px);
+        }
+
+        /* WhatsApp button */
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #25d366;
+            color: #fff;
+            border-radius: var(--radius-full);
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .wa-btn:hover {
+            background: #1db954;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--clr-black);
+            color: rgba(255, 255, 255, 0.55);
+            text-align: center;
+            padding: 28px 24px;
+            font-size: 0.82rem;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="/" class="nav-back">
+            ← Volver
+        </a>
+        <a href="/" aria-label="NUVA">
+            <img src="img/logo.avif" alt="NUVA" class="logo-img"
+                onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<span class=\'logo-text\'>NUVA</span>')">
+        </a>
+        <div style="width:60px"></div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-chip">Canal mayorista</div>
+        <h1>Comprá <strong>ZARIKOF</strong><br>al por mayor</h1>
+        <p>Ropa de mujer juvenil para tu local o tienda online. Pantalones, joggers y camperas de tendencia.</p>
+    </section>
+
+    <!-- Content -->
+    <div class="page">
+
+        <!-- Condiciones -->
+        <section class="section">
+            <h2 class="section-title">Condiciones mayoristas</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-icon">📦</div>
+                    <p class="info-card-title">Pedido mínimo</p>
+                    <p class="info-card-value">6 prendas</p>
+                    <p class="info-card-desc">Podés mezclar categorías y talles libremente.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">💳</div>
+                    <p class="info-card-title">Pago</p>
+                    <p class="info-card-value">Transferencia / Efectivo</p>
+                    <p class="info-card-desc">50% al confirmar, 50% al envío.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🚚</div>
+                    <p class="info-card-title">Envíos</p>
+                    <p class="info-card-value">Todo el país</p>
+                    <p class="info-card-desc">Andreani o Correo Argentino. CABA con envío propio.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🏷️</div>
+                    <p class="info-card-title">Precios</p>
+                    <p class="info-card-value">Lista exclusiva</p>
+                    <p class="info-card-desc">Hasta 35% de descuento sobre precio de lista.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto directo -->
+        <section class="section">
+            <h2 class="section-title">Contacto rápido</h2>
+            <p style="color: var(--clr-text-2); margin-bottom: 20px;">
+                Escribinos por WhatsApp para recibir la lista de precios mayoristas actualizada y coordinar tu primer
+                pedido.
+            </p>
+            <a href="https://wa.me/5491100000000?text=Hola!%20Quisiera%20información%20sobre%20ventas%20mayoristas%20de%20NUVA%20🛍️"
+                class="wa-btn" target="_blank" rel="noopener noreferrer" id="mayoristWaBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path
+                        d="M12 0C5.373 0 0 5.373 0 12c0 2.122.56 4.112 1.539 5.838L0 24l6.338-1.515A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.483-5.072-1.33l-.364-.214-3.762.9.958-3.674-.238-.379A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                </svg>
+                Consultar por WhatsApp
+            </a>
+        </section>
+
+        <!-- Formulario -->
+        <section class="section">
+            <h2 class="section-title">Formulario de contacto</h2>
+            <form class="contact-form" id="mayoristForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="mNombre">Nombre *</label>
+                        <input type="text" id="mNombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mApellido">Apellido *</label>
+                        <input type="text" id="mApellido" placeholder="Tu apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mEmail">Email *</label>
+                        <input type="email" id="mEmail" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mTel">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="mTel" placeholder="1131095557" inputmode="numeric" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mLocalidad">Localidad *</label>
+                        <input type="text" id="mLocalidad" placeholder="Buenos Aires" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mRubro">Rubro comercial</label>
+                        <select id="mRubro">
+                            <option value="">Seleccioná...</option>
+                            <option>Local de ropa física</option>
+                            <option>Tienda online</option>
+                            <option>Reventa informal</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="mMensaje">Mensaje (opcional)</label>
+                        <textarea id="mMensaje"
+                            placeholder="Contanos qué categorías te interesan, volumen estimado, etc."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Enviar consulta</button>
+                <p id="formSuccess" style="display:none; color:#2e7d32; font-size:0.9rem; font-weight:600;">
+                    ✓ Consulta enviada. Te contactamos a la brevedad.
+                </p>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 NUVA — Todos los derechos reservados. &nbsp;|&nbsp; <a href="/">Volver al catálogo</a></p>
+    </footer>
+
+    <script>
+        // Load config for WhatsApp number
+        fetch("/api/config")
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+                if (data?.whatsappNumber) {
+                    const msg = encodeURIComponent("Hola! Quisiera información sobre ventas mayoristas de NUVA 🛍️");
+                    document.getElementById("mayoristWaBtn").href = `https://wa.me/${data.whatsappNumber}?text=${msg}`;
+                }
+            })
+            .catch(() => { });
+
+        // Form submit → show success (demo)
+        document.getElementById("mayoristForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const btn = this.querySelector(".submit-btn");
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+            setTimeout(() => {
+                btn.style.display = "none";
+                document.getElementById("formSuccess").style.display = "block";
+            }, 800);
+        });
+    </script>
+
+</body>
+
+</html>

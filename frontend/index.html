@@ -4,209 +4,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tienda online de productos para niños y niñas">
-    <title>Tienda Online - Productos para Niños</title>
+    <meta name="description" content="ZARIKOF - Indumentaria mayorista y minorista">
+    <title>ZARIKOF — Indumentaria</title>
     <link rel="icon" type="image/avif" href="img/favico.avif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img class="logo-img" src="img/logo.avif" alt="Logo">
+
+    <!-- ── NAV FLOTANTE ────────────────────────────────────────── -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <!-- Lado izquierdo: enlace mayorista -->
+            <nav class="nav-left" aria-label="Navegación secundaria">
+                <a href="/mayorista" class="nav-link" id="nav-mayorista">Mayorista</a>
+            </nav>
+
+            <!-- Centro: logo -->
+            <a href="/" class="navbar-logo" aria-label="NUVA Inicio">
+                <img src="img/logo.avif" alt="NUVA" class="logo-img" id="logo-img"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span class="logo-text" style="display:none">NUVA</span>
+            </a>
+
+            <!-- Lado derecho: carrito -->
+            <div class="nav-right">
+                <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
+                    <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
             </div>
-            <button class="cart-button-desktop" id="cartBtnDesktop">
-                🛒 Carrito
-                <span class="cart-badge" id="cartBadgeDesktop">0</span>
-            </button>
         </div>
     </header>
 
-    <!-- Filters -->
-    <section class="filters">
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="todas">Todas</button>
-            <button class="filter-btn" data-filter="niño">Niño</button>
-            <button class="filter-btn" data-filter="niña">Niña</button>
+    <!-- ── HERO ────────────────────────────────────────────────── -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-label">Nueva colección</p>
+            <h1 class="hero-title">Moda que <em>te define</em></h1>
+            <p class="hero-sub">Ropa de mujer cómoda, actual y con estilo</p>
+            <a href="#catalogo" class="hero-cta">Ver colección</a>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- ── FILTROS ─────────────────────────────────────────────── -->
+    <section class="filters-section" id="catalogo">
+        <div class="filters-inner">
+            <button class="filter-btn active" data-filter="todas" id="filter-todas">Todas</button>
+            <button class="filter-btn" data-filter="conjuntos" id="filter-conjuntos">Conjuntos</button>
+            <button class="filter-btn" data-filter="joggers" id="filter-joggers">Joggers</button>
+            <button class="filter-btn" data-filter="camperas" id="filter-camperas">Camperas</button>
         </div>
     </section>
 
-    <!-- Products Grid -->
-    <main class="products-container">
+    <!-- ── GRID DE PRODUCTOS ───────────────────────────────────── -->
+    <main class="products-section">
         <div class="products-grid" id="productsGrid">
-            <!-- Products will be dynamically inserted here -->
+            <!-- Skeleton loaders -->
+            <div class="product-skeleton"></div>
+            <div class="product-skeleton"></div>
+            <div class="product-skeleton"></div>
+            <div class="product-skeleton"></div>
         </div>
+        <p class="no-products" id="noProducts" style="display:none">
+            No hay productos en esta categoría.
+        </p>
     </main>
 
-    <!-- Mobile Cart Button -->
-    <button class="cart-button-mobile" id="cartBtnMobile">
-        🛒 Carrito
-        <span class="cart-badge" id="cartBadgeMobile">0</span>
-    </button>
+    <!-- ── CARRITO DRAWER ──────────────────────────────────────── -->
+    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h2>🛒 Mi Carrito</h2>
-                <button class="close-cart" id="closeCart">&times;</button>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+        <div class="cart-drawer-header">
+            <h2>Tu carrito</h2>
+            <button class="close-btn" id="closeCart" aria-label="Cerrar carrito">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="cart-body" id="cartBody">
+            <!-- Empty state -->
+            <div class="cart-empty" id="cartEmpty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="#ccc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <p>Tu carrito está vacío</p>
             </div>
 
-            <div class="cart-items" id="cartItems">
-                <div class="empty-cart" id="emptyCart">
-                    <div class="empty-cart-icon">🛒</div>
-                    <p>Tu carrito está vacío</p>
-                </div>
+            <!-- Items list -->
+            <ul class="cart-items-list" id="cartItemsList"></ul>
+        </div>
+
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span class="cart-total-amount" id="cartTotal">$0</span>
             </div>
 
-            <div class="cart-summary" id="cartSummary" style="display: none;">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span class="cart-total-amount" id="cartTotal">$0</span>
+            <!-- Formulario de contacto -->
+            <form class="contact-form" id="contactForm" autocomplete="on" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Nombre *</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Luna" autocomplete="given-name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Apellido *</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="García" autocomplete="family-name"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="1131095557" inputmode="numeric"
+                        autocomplete="tel" required>
                 </div>
 
-                <!-- Order Number (shown after sending) -->
-                <div class="order-number" id="orderNumber">
-                    <div class="order-number-label">Número de Orden</div>
-                    <div class="order-number-value" id="orderNumberValue"></div>
+                <div class="delivery-section">
+                    <p class="delivery-label">Método de entrega *</p>
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="envio"> Envío a domicilio
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="retiro"> Retiro en local
+                    </label>
                 </div>
 
-                <!-- Success Alert -->
-                <div class="alert" id="successAlert">
-                    <p class="alert-text"></p>
-                </div>
-
-                <!-- Customer Form -->
-                <form class="customer-form" id="customerForm" autocomplete="on">
+                <div class="address-group" id="addressGroup" style="display:none">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">Nombre *</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Juan"
-                                autocomplete="given-name" required>
+                            <label for="street">Calle *</label>
+                            <input type="text" id="street" name="street" placeholder="Av. Corrientes"
+                                autocomplete="address-line1">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Apellido *</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Pérez"
-                                autocomplete="family-name" required>
+                            <label for="streetNum">Altura *</label>
+                            <input type="text" id="streetNum" name="streetNum" placeholder="1234" inputmode="numeric">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="phone">Teléfono *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="1131095557" pattern="[0-9]*"
-                            inputmode="numeric" autocomplete="tel" required>
-                    </div>
-
-                    <!-- Delivery Options -->
-                    <div class="delivery-options">
-                        <span class="delivery-label">Método de entrega *</span>
-                        <div class="delivery-option">
-                            <input type="radio" id="deliveryHome" name="deliveryMethod" value="home">
-                            <label for="deliveryHome">📦 Envío a domicilio</label>
-                        </div>
-                        <div class="delivery-option">
-                            <input type="radio" id="deliveryPickup" name="deliveryMethod" value="pickup">
-                            <label for="deliveryPickup">🏪 Retiro en sucursal, Floresta</label>
-                        </div>
-                    </div>
-
-                    <!-- Address Fields (shown only when home delivery is selected) -->
-                    <div class="address-fields" id="addressFields" style="display: none;">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="street">Calle *</label>
-                                <input type="text" id="street" name="street" placeholder="Av. Corrientes"
-                                    autocomplete="address-line1">
-                            </div>
-                            <div class="form-group">
-                                <label for="number">Altura *</label>
-                                <input type="text" id="number" name="number" placeholder="1234" pattern="[0-9]*"
-                                    inputmode="numeric" autocomplete="address-line2">
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">Localidad *</label>
-                                <input type="text" id="city" name="city" placeholder="CABA"
-                                    autocomplete="address-level2">
-                            </div>
-                            <div class="form-group">
-                                <label for="province">Provincia *</label>
-                                <input type="text" id="province" name="province" placeholder="Buenos Aires"
-                                    autocomplete="address-level1">
-                            </div>
-                        </div>
-
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="zipCode">Código Postal *</label>
-                            <input type="text" id="zipCode" name="zipCode" placeholder="1043" pattern="[0-9]*"
-                                inputmode="numeric" autocomplete="postal-code">
+                            <label for="city">Localidad *</label>
+                            <input type="text" id="city" name="city" placeholder="CABA" autocomplete="address-level2">
                         </div>
-                    </div>
-                </form>
-
-                <!-- Action Buttons -->
-                <div class="cart-actions">
-                    <div class="contact-buttons">
-                        <button class="whatsapp-btn" id="whatsappBtn" disabled>
-                            📱 Enviar a WhatsApp
-                        </button>
-                        <button class="email-btn" id="emailBtn" disabled>
-                            📧 Enviar por Email
-                        </button>
+                        <div class="form-group">
+                            <label for="zip">Código Postal *</label>
+                            <input type="text" id="zip" name="zip" placeholder="1043" inputmode="numeric"
+                                autocomplete="postal-code">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </form>
 
-    <!-- Footer -->
+            <button class="whatsapp-btn" id="whatsappBtn" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path
+                        d="M12 0C5.373 0 0 5.373 0 12c0 2.122.56 4.112 1.539 5.838L0 24l6.338-1.515A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.483-5.072-1.33l-.364-.214-3.762.9.958-3.674-.238-.379A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                </svg>
+                Consultar por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────── -->
     <footer class="footer">
-        <div class="footer-content">
-            <!-- Data Fiscal -->
-            <div class="footer-section footer-fiscal">
-                <a href="http://qr.afip.gob.ar/?qr=O_Go28aOgTQxnaj5X50iVg,," target="_F960AFIPInfo">
-                    <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP"
-                        class="data-fiscal-img">
+        <div class="footer-inner">
+
+            <!-- Izquierda: QR AFIP -->
+            <div class="footer-col footer-col-afip">
+                <p class="footer-label">Datos Fiscales</p>
+                <a href="http://qr.afip.gob.ar/?qr=placeholder" target="_F960AFIPInfo" aria-label="Datos fiscales AFIP"
+                    class="afip-link">
+                    <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="AFIP - Data Fiscal" class="afip-img">
                 </a>
             </div>
 
-            <!-- Enlaces -->
-            <div class="footer-section footer-links">
-                <h4>Enlaces</h4>
-                <a href="#" class="footer-link disabled">Preguntas Frecuentes</a>
-                <a href="#" class="footer-link disabled">Términos y Condiciones</a>
-                <a href="#" class="footer-link disabled">Política de Privacidad</a>
+            <!-- Centro: enlaces -->
+            <div class="footer-col footer-col-links">
+                <p class="footer-label">Información</p>
+                <ul class="footer-links">
+                    <li><a href="/mayorista" class="footer-link">Ventas mayoristas</a></li>
+                    <li><a href="#" class="footer-link">Preguntas frecuentes</a></li>
+                    <li><a href="#" class="footer-link">Términos y condiciones</a></li>
+                    <li><a href="#" class="footer-link">Política de privacidad</a></li>
+                </ul>
             </div>
 
-            <!-- Redes Sociales -->
-            <div class="footer-section footer-social">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/monctonstore/" target="_blank" class="social-icon"
-                        aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Derecha: redes sociales -->
+            <div class="footer-col footer-col-social">
+                <p class="footer-label">Seguinos</p>
+                <div class="social-links">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/nuva" target="_blank" rel="noopener noreferrer"
+                        class="social-link" aria-label="Instagram de NUVA" id="instagramLink">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                         </svg>
+                        <span>Instagram</span>
                     </a>
-                    <a href="https://www.tiktok.com/@monctonstore?is_from_webapp=1&sender_device=pc" target="_blank"
-                        class="social-icon" aria-label="TikTok">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@nuva" target="_blank" rel="noopener noreferrer" class="social-link"
+                        aria-label="TikTok de NUVA" id="tiktokLink">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
                         </svg>
+                        <span>TikTok</span>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer"
+                        class="social-link social-link--wa" aria-label="WhatsApp de NUVA" id="whatsappLink">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                            <path
+                                d="M12 0C5.373 0 0 5.373 0 12c0 2.122.56 4.112 1.539 5.838L0 24l6.338-1.515A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.483-5.072-1.33l-.364-.214-3.762.9.958-3.674-.238-.379A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                        </svg>
+                        <span>WhatsApp</span>
                     </a>
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>&copy; 2025 Tienda Online. Todos los derechos reservados.</p>
+            <p>&copy; 2025 NUVA — Todos los derechos reservados.</p>
         </div>
     </footer>
 
