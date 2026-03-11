@@ -75,94 +75,220 @@ products = [
     # ── Camperas ───────────────────────────────────────────────────────────────
     {
         "sku": "CAM-0010",
-        "title": "Campera ",
+        "title": "Campera cropped - duna",
         "description": "Jogger de algodón con cintura elástica y puños. Súper cómodo para el día a día.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-10.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
     {
         "sku": "CAM-0011",
-        "title": "Jogger algodón premium - gris melange",
+        "title": "Campera cropped - gris melange",
         "description": "Jogger de algodón con cintura elástica y puños. Súper cómodo para el día a día.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-11.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
     {
         "sku": "CAM-0012",
-        "title": "Jogger polar oversized - rosa empolvado",
+        "title": "Campera cropped - pistacho",
         "description": "Jogger abrigado de polar con bolsillos laterales y puños acanalados.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-12.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
     {
         "sku": "CAM-0013",
-        "title": "Jogger cargo - verde oliva",
+        "title": "Campera cropped - rosa",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-13.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
     {
         "sku": "CAM-0014",
-        "title": "Jogger cargo - verde oliva",
+        "title": "Campera cropped - blanco",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-14.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
     {
         "sku": "CAM-0015",
-        "title": "Jogger cargo - verde oliva",
+        "title": "Campera cropped - negro",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
         "category": "camperas",
         "image": "/img/art-15.avif",
-        "talles": ["S"]
+        "talles": ["S-M"]
     },
 
     # ── BUZOS ──────────────────────────────────────────────────────────────
     {
-        "sku": "CAM-0001",
-        "title": "Campera bomber - negra",
-        "description": "Campera bomber con interior acolchado, puños y cintura elásticos.",
-        "price": 58000,
-        "category": "camperas",
-        "image": "/img/cam-bomber.avif",
-        "talles": ["XS", "S", "M", "L", "XL"]
+        "sku": "BUZ-3000",
+        "title": "Buzo Snoopy - blanco",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3000.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
     },
     {
-        "sku": "CAM-0002",
-        "title": "Campera rompevientos - blanca",
-        "description": "Campera rompevientos liviana con capucha desmontable y cierre central.",
-        "price": 48000,
-        "category": "camperas",
-        "image": "/img/cam-rompevientos.avif",
-        "talles": ["S", "M", "L", "XL"]
+        "sku": "BUZ-3001",
+        "title": "Buzo Snoopy - pistacho",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3001.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
     },
     {
-        "sku": "CAM-0003",
-        "title": "Campera polar oversize - lila",
-        "description": "Campera polar oversize con frisa en el interior. Abrigada y trendy.",
-        "price": 52000,
-        "category": "camperas",
-        "image": "/img/cam-polar.avif",
-        "talles": ["XS", "S", "M", "L", "XL"]
+        "sku": "BUZ-3002",
+        "title": "Buzo Snoopy - negro",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3002.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
     },
     {
-        "sku": "CAM-0004",
-        "title": "Campera cuero eco - camel",
-        "description": "Campera de cuero ecológico con cierre metálico y bolsillos con vivo.",
-        "price": 72000,
-        "category": "camperas",
-        "image": "/img/cam-cuero.avif",
-        "talles": ["S", "M", "L"]
+        "sku": "BUZ-3003",
+        "title": "Buzo Snoopy - gris",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3003.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3004",
+        "title": "Buzo Snoopy - rosa",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3004.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3005",
+        "title": "Buzo Snoopy - duna",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3005.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3006",
+        "title": "Buzo Admire - gris",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3006.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3007",
+        "title": "Buzo Admire - negro",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3007.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3008",
+        "title": "Buzo Admire - blanco",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3008.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3009",
+        "title": "Buzo Admire - rosa",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3009.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3010",
+        "title": "Buzo Admire - pistacho",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3010.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3011",
+        "title": "Buzo Snoopy - duna",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3011.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3100",
+        "title": "Buzo Space - pistacho",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3100.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3101",
+        "title": "Buzo Space - rosa",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3101.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3102",
+        "title": "Buzo Space - negro",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3102.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3103",
+        "title": "Buzo Space - gris",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3103.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3104",
+        "title": "Buzo Space - blanco",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3104.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
+    },
+    {
+        "sku": "BUZ-3105",
+        "title": "Buzo Space - duna",
+        "description": "",
+        "price": 19000,
+        "category": "buzos",
+        "image": "/img/art-3105.avif",
+        "talles": ["6", "8", "10", "12", "14", "16"]
     },
 ]
