@@ -97,7 +97,7 @@ function buildProductCard(p, index) {
 
     const categoryLabel = {
         conjuntos: "Conjuntos",
-        joggers: "Joggers",
+        buzos: "Buzos",
         camperas: "Camperas"
     }[p.category] || p.category;
 

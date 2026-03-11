@@ -230,7 +230,7 @@ products = [
     },
     {
         "sku": "BUZ-3011",
-        "title": "Buzo Snoopy - duna",
+        "title": "Buzo Admire - duna",
         "description": "",
         "price": 19000,
         "category": "buzos",
