@@ -98,7 +98,8 @@ function buildProductCard(p, index) {
     const categoryLabel = {
         conjuntos: "Conjuntos",
         buzos: "Buzos",
-        camperas: "Camperas"
+        camperas: "Camperas",
+        sweaters: "Sweaters"
     }[p.category] || p.category;
 
     // Build talle buttons HTML

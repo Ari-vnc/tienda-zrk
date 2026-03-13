@@ -291,4 +291,50 @@ products = [
         "image": "/img/art-3105.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
     },
+# ── Sweaters ──────────────────────────────────────────────────────────────
+    {
+        "sku": "art-100",
+        "title": "Sweater fino estampa print - chocolate",
+        "description": "",
+        "price": 13000,
+        "category": "sweaters",
+        "image": "/img/art-100.avif",
+        "talles": ["S-M"]
+    },
+    {
+        "sku": "art-101",
+        "title": "Sweater fino print - blanco",
+        "description": "",
+        "price": 13000,
+        "category": "sweaters",
+        "image": "/img/art-101.avif",
+        "talles": ["S-M"]
+    },
+    {
+        "sku": "art-110",
+        "title": "Sweater fino collage - negro",
+        "description": "",
+        "price": 13000,
+        "category": "sweaters",
+        "image": "/img/art-110.avif",
+        "talles": ["S-M"]
+    },
+    {
+        "sku": "art-111",
+        "title": "Sweater fino collage - blanco",
+        "description": "",
+        "price": 13000,
+        "category": "sweaters",
+        "image": "/img/art-111.avif",
+        "talles": ["S-M"]
+    },
+    {
+        "sku": "art-120",
+        "title": "Sweater fino more fun - beige",
+        "description": "",
+        "price": 13000,
+        "category": "sweaters",
+        "image": "/img/art-120.avif",
+        "talles": ["S-M"]
+    },
 ]
