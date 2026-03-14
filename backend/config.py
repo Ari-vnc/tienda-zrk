@@ -2,7 +2,7 @@ import os
 from typing import List
 
 class Settings:
-    """Configuración de la aplicación NUVA"""
+    """Configuración de la aplicación ZARIKOF"""
 
     # CORS Configuration
     CORS_ORIGINS: List[str] = os.getenv(
@@ -13,11 +13,11 @@ class Settings:
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: str = os.getenv("RATE_LIMIT_PER_MINUTE", "60/minute")
 
-    # Datos de contacto NUVA — reemplazar con datos reales
+    # Datos de contacto ZARIKOF — reemplazar con datos reales
     WHATSAPP_NUMBER: str = os.getenv("WHATSAPP_NUMBER", "5491130405544")
     CONTACT_EMAIL: str = os.getenv("CONTACT_EMAIL", "zariikof@gmail.com")
 
-    # Redes sociales NUVA — reemplazar con links reales
+    # Redes sociales ZARIKOF — reemplazar con links reales
     INSTAGRAM_URL: str = os.getenv("INSTAGRAM_URL", "https://www.instagram.com/zariikof/")
     TIKTOK_URL: str = os.getenv("TIKTOK_URL", "https://www.tiktok.com/@zariikof")
 

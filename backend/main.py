@@ -7,15 +7,15 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from pathlib import Path
 import os
-from .products import products
+from .products import products, live_config
 from .config import settings
 
 # Initialize rate limiter
 limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
-    title="NUVA — Ropa de Mujer Juvenil",
-    description="API del catálogo de ropa femenina NUVA",
+    title="ZARIKOF — Ropa de Mujer Juvenil",
+    description="API del catálogo de ropa femenina ZARIKOF",
     version="2.0.0",
     docs_url="/docs" if settings.DEBUG else None,
     redoc_url="/redoc" if settings.DEBUG else None
@@ -80,6 +80,16 @@ async def get_config(request: Request):
         "contactEmail": settings.CONTACT_EMAIL,
         "instagramUrl": settings.INSTAGRAM_URL,
         "tiktokUrl": settings.TIKTOK_URL,
+    }
+
+
+@app.get("/api/live")
+@limiter.limit("60/minute")
+async def get_live(request: Request):
+    """Devuelve la configuración del live de TikTok (fecha/hora de inicio y fin)."""
+    return {
+        "live_start": live_config.get("live_start", ""),
+        "live_end": live_config.get("live_end", ""),
     }
 
 
@@ -170,7 +180,7 @@ async def serve_frontend_file(filename: str):
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "app": "nuva", "environment": settings.ENVIRONMENT}
+    return {"status": "healthy", "app": "zarikof", "environment": settings.ENVIRONMENT}
 
 
 # ── Error Handlers ────────────────────────────────────────────────────────────

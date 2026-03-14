@@ -1,45 +1,54 @@
 /* ====================================================
-   NUVA — app.js
+   ZARIKOF — app.js
    Catálogo de ropa de mujer juvenil
    ==================================================== */
 
 const API_URL = "/api/products";
 const CONFIG_URL = "/api/config";
+const LIVE_URL = "/api/live";
 
 // ── State ──────────────────────────────────────────────────────
 let allProducts = [];
 let cart = [];    // { sku, title, price, image, talle, qty }
 let config = {
     whatsappNumber: "5491100000000",
-    instagramUrl: "https://www.instagram.com/nuva",
-    tiktokUrl: "https://www.tiktok.com/@nuva"
+    instagramUrl: "https://www.instagram.com/zariikof/",
+    tiktokUrl: "https://www.tiktok.com/@zariikof"
 };
 let activeFilter = "todas";
+let liveStart    = null;
+let liveEnd      = null;
+let isLiveActive = false;
 
 // ── DOM refs ───────────────────────────────────────────────────
-const productsGrid = document.getElementById("productsGrid");
-const noProducts = document.getElementById("noProducts");
-const cartBadge = document.getElementById("cartBadge");
-const cartBtn = document.getElementById("cartBtn");
-const cartDrawer = document.getElementById("cartDrawer");
-const cartOverlay = document.getElementById("cartOverlay");
-const closeCart = document.getElementById("closeCart");
-const cartEmpty = document.getElementById("cartEmpty");
+const liveBanner    = document.getElementById("liveBanner");
+const productsGrid  = document.getElementById("productsGrid");
+const noProducts    = document.getElementById("noProducts");
+const cartBadge     = document.getElementById("cartBadge");
+const cartBtn       = document.getElementById("cartBtn");
+const cartDrawer    = document.getElementById("cartDrawer");
+const cartOverlay   = document.getElementById("cartOverlay");
+const closeCart     = document.getElementById("closeCart");
+const cartEmpty     = document.getElementById("cartEmpty");
 const cartItemsList = document.getElementById("cartItemsList");
-const cartFooter = document.getElementById("cartFooter");
-const cartTotal = document.getElementById("cartTotal");
-const whatsappBtn = document.getElementById("whatsappBtn");
-const contactForm = document.getElementById("contactForm");
-const addressGroup = document.getElementById("addressGroup");
-const navbar = document.getElementById("navbar");
+const cartFooter    = document.getElementById("cartFooter");
+const cartTotal     = document.getElementById("cartTotal");
+const whatsappBtn   = document.getElementById("whatsappBtn");
+const contactForm   = document.getElementById("contactForm");
+const addressGroup  = document.getElementById("addressGroup");
+const navbar        = document.getElementById("navbar");
 const instagramLink = document.getElementById("instagramLink");
-const tiktokLink = document.getElementById("tiktokLink");
-const whatsappLink = document.getElementById("whatsappLink");
+const tiktokLink    = document.getElementById("tiktokLink");
+const whatsappLink  = document.getElementById("whatsappLink");
 
 // ── Init ───────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
-    await Promise.all([loadConfig(), loadProducts()]);
+    await Promise.all([loadConfig(), loadLiveConfig(), loadProducts()]);
+    checkLiveStatus(false);     // sets isLiveActive BEFORE first render
+    applyFilter(activeFilter);  // first render with correct live state
     setupEventListeners();
+    // Re-check live status every 30 seconds
+    setInterval(() => checkLiveStatus(true), 30000);
 });
 
 // ── Load Config ────────────────────────────────────────────────
@@ -60,6 +69,42 @@ async function loadConfig() {
     }
 }
 
+// ── Load Live Config ───────────────────────────────────────────
+async function loadLiveConfig() {
+    try {
+        const res = await fetch(LIVE_URL);
+        if (!res.ok) return;
+        const data = await res.json();
+        liveStart = data.live_start ? new Date(data.live_start) : null;
+        liveEnd   = data.live_end   ? new Date(data.live_end)   : null;
+    } catch (err) {
+        console.warn("Live config not available.", err);
+    }
+}
+
+// ── Check Live Status ──────────────────────────────────────────
+// rerenderProducts: when true, re-renders the grid if live state changed
+function checkLiveStatus(rerenderProducts) {
+    const now = new Date();
+    const nowActive = liveStart && liveEnd
+        ? (now >= liveStart && now <= liveEnd)
+        : false;
+
+    if (nowActive === isLiveActive) return; // no change
+
+    isLiveActive = nowActive;
+
+    if (isLiveActive) {
+        liveBanner.style.display = "flex";
+        document.body.classList.add("live-active");
+    } else {
+        liveBanner.style.display = "none";
+        document.body.classList.remove("live-active");
+    }
+
+    if (rerenderProducts) applyFilter(activeFilter);
+}
+
 // ── Load Products ──────────────────────────────────────────────
 async function loadProducts() {
     try {
@@ -70,8 +115,9 @@ async function loadProducts() {
         console.error("Error loading products:", err);
         allProducts = [];
     }
-    renderProducts(allProducts);
+    // NOTE: rendering is deferred to after checkLiveStatus() in the init handler
 }
+
 
 // ── Render Products ────────────────────────────────────────────
 function renderProducts(products) {
@@ -107,11 +153,18 @@ function buildProductCard(p, index) {
         `<button class="talle-btn${i === 0 ? " selected" : ""}" data-talle="${t}" type="button">${t}</button>`
     ).join("");
 
-    const price = new Intl.NumberFormat("es-AR", {
-        style: "currency",
-        currency: "ARS",
-        minimumFractionDigits: 0
-    }).format(p.price);
+    const fmt = (n) => new Intl.NumberFormat("es-AR", {
+        style: "currency", currency: "ARS", minimumFractionDigits: 0
+    }).format(n);
+
+    // Price HTML: show tiktok promo during live, normal otherwise
+    const hasTiktokPrice = isLiveActive && p.tiktok_price && p.tiktok_price > 0;
+    const priceHTML = hasTiktokPrice
+        ? `<div class="price-wrapper">
+               <span class="price-original">${fmt(p.price)}</span>
+               <span class="price-tiktok">${fmt(p.tiktok_price)}</span>
+           </div>`
+        : `<p class="product-price">${fmt(p.price)}</p>`;
 
     card.innerHTML = `
         <div class="product-img-wrap">
@@ -127,7 +180,7 @@ function buildProductCard(p, index) {
         </div>
         <div class="product-info">
             <h3 class="product-title">${p.title}</h3>
-            <p class="product-price">${price}</p>
+            ${priceHTML}
             <div class="talle-selector">
                 <p class="talle-label">Talle</p>
                 <div class="talle-options">${talleButtons}</div>
@@ -169,6 +222,10 @@ function applyFilter(filter) {
 function addToCart(product, talle) {
     const key = `${product.sku}__${talle}`;
     const existing = cart.find(i => i._key === key);
+    // Use tiktok price during live if available
+    const effectivePrice = (isLiveActive && product.tiktok_price && product.tiktok_price > 0)
+        ? product.tiktok_price
+        : product.price;
 
     if (existing) {
         existing.qty++;
@@ -177,7 +234,7 @@ function addToCart(product, talle) {
             _key: key,
             sku: product.sku,
             title: product.title,
-            price: product.price,
+            price: effectivePrice,
             image: product.image,
             talle,
             qty: 1
@@ -329,7 +386,7 @@ function buildWhatsAppMessage() {
     const deliveryLabel = delivery === "envio" ? "📦 Envío a domicilio" : "🏪 Retiro en local";
 
     const msg = [
-        `¡Hola! Quisiera hacer un pedido en NUVA 🛍️`,
+        `¡Hola! Quisiera hacer un pedido en ZARIKOF 🛍️`,
         ``,
         `👤 ${firstName} ${lastName}`,
         `📱 ${phone}`,

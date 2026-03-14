@@ -1,5 +1,5 @@
 """
-Catálogo de productos - NUVA
+Catálogo de productos - ZARIKOF
 Ropa de mujer juvenil
 
 Para agregar un nuevo producto, copiar el siguiente bloque y completar los campos:
@@ -9,11 +9,21 @@ Para agregar un nuevo producto, copiar el siguiente bloque y completar los campo
     "title": "Nombre del producto",
     "description": "Descripción breve",
     "price": 0000,               # Precio en pesos argentinos
-    "category": "pantalones",    # Opciones: "pantalones", "joggers", "camperas"
+    "tiktok_price": 0000,        # Precio especial durante el live de TikTok (0 = sin descuento)
+    "category": "pantalones",    # Opciones: "conjuntos", "buzos", "camperas", "sweaters"
     "image": "/img/nombre.avif", # Ruta a la imagen
     "talles": ["XS", "S", "M", "L", "XL"]  # Talles disponibles
 },
 """
+
+# ── Configuración del Live de TikTok ─────────────────────────────────────────
+# Completar live_start y live_end con fecha/hora en formato ISO 8601.
+# Ejemplo: "2026-03-15T20:00:00-03:00"
+# Dejar en "" cuando no haya live programado.
+live_config = {
+    "live_start": "2026-03-14T12:05:00-03:00",
+    "live_end": "2026-03-14T12:40:00-03:00",
+}
 
 products = [
     # ── Conjuntos ────────────────────────────────────────────────────────────
@@ -22,6 +32,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - negro y blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2020.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -31,6 +42,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - gris topo y blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2021.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -40,6 +52,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - rosa y blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2022.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -49,6 +62,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - crema y blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2023.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -58,6 +72,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - chocolate y blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2024.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -67,6 +82,7 @@ products = [
         "title": "Conjunto zarikof ⭐ forever - blanco y rosa",
         "description": "",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "conjuntos",
         "image": "/img/art-2025.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -78,6 +94,7 @@ products = [
         "title": "Campera cropped - duna",
         "description": "Jogger de algodón con cintura elástica y puños. Súper cómodo para el día a día.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-10.avif",
         "talles": ["S-M"]
@@ -87,6 +104,7 @@ products = [
         "title": "Campera cropped - gris melange",
         "description": "Jogger de algodón con cintura elástica y puños. Súper cómodo para el día a día.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-11.avif",
         "talles": ["S-M"]
@@ -96,6 +114,7 @@ products = [
         "title": "Campera cropped - pistacho",
         "description": "Jogger abrigado de polar con bolsillos laterales y puños acanalados.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-12.avif",
         "talles": ["S-M"]
@@ -105,6 +124,7 @@ products = [
         "title": "Campera cropped - rosa",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-13.avif",
         "talles": ["S-M"]
@@ -114,6 +134,7 @@ products = [
         "title": "Campera cropped - blanco",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-14.avif",
         "talles": ["S-M"]
@@ -123,6 +144,7 @@ products = [
         "title": "Campera cropped - negro",
         "description": "Jogger estilo cargo con bolsillos laterales y trabillas en los puños.",
         "price": 19000,
+        "tiktok_price": 15000,
         "category": "camperas",
         "image": "/img/art-15.avif",
         "talles": ["S-M"]
@@ -134,6 +156,7 @@ products = [
         "title": "Buzo Snoopy - blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3000.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -143,6 +166,7 @@ products = [
         "title": "Buzo Snoopy - pistacho",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3001.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -152,6 +176,7 @@ products = [
         "title": "Buzo Snoopy - negro",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3002.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -161,6 +186,7 @@ products = [
         "title": "Buzo Snoopy - gris",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3003.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -170,6 +196,7 @@ products = [
         "title": "Buzo Snoopy - rosa",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3004.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -179,6 +206,7 @@ products = [
         "title": "Buzo Snoopy - duna",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3005.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -188,6 +216,7 @@ products = [
         "title": "Buzo Admire - gris",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3006.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -197,6 +226,7 @@ products = [
         "title": "Buzo Admire - negro",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3007.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -206,6 +236,7 @@ products = [
         "title": "Buzo Admire - blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3008.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -215,6 +246,7 @@ products = [
         "title": "Buzo Admire - rosa",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3009.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -224,6 +256,7 @@ products = [
         "title": "Buzo Admire - pistacho",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3010.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -233,6 +266,7 @@ products = [
         "title": "Buzo Admire - duna",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3011.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -242,6 +276,7 @@ products = [
         "title": "Buzo Space - pistacho",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3100.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -251,6 +286,7 @@ products = [
         "title": "Buzo Space - rosa",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3101.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -260,6 +296,7 @@ products = [
         "title": "Buzo Space - negro",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3102.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -269,6 +306,7 @@ products = [
         "title": "Buzo Space - gris",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3103.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -278,6 +316,7 @@ products = [
         "title": "Buzo Space - blanco",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3104.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -287,6 +326,7 @@ products = [
         "title": "Buzo Space - duna",
         "description": "",
         "price": 19000,
+        "tiktok_price": 14000,
         "category": "buzos",
         "image": "/img/art-3105.avif",
         "talles": ["6", "8", "10", "12", "14", "16"]
@@ -297,6 +337,7 @@ products = [
         "title": "Sweater fino estampa print - chocolate",
         "description": "",
         "price": 13000,
+        "tiktok_price": 8000,
         "category": "sweaters",
         "image": "/img/art-100.avif",
         "talles": ["S-M"]
@@ -306,6 +347,7 @@ products = [
         "title": "Sweater fino print - blanco",
         "description": "",
         "price": 13000,
+        "tiktok_price": 8000,
         "category": "sweaters",
         "image": "/img/art-101.avif",
         "talles": ["S-M"]
@@ -315,6 +357,7 @@ products = [
         "title": "Sweater fino collage - negro",
         "description": "",
         "price": 13000,
+        "tiktok_price": 8000,
         "category": "sweaters",
         "image": "/img/art-110.avif",
         "talles": ["S-M"]
@@ -324,6 +367,7 @@ products = [
         "title": "Sweater fino collage - blanco",
         "description": "",
         "price": 13000,
+        "tiktok_price": 8000,
         "category": "sweaters",
         "image": "/img/art-111.avif",
         "talles": ["S-M"]
@@ -333,6 +377,7 @@ products = [
         "title": "Sweater fino more fun - beige",
         "description": "",
         "price": 13000,
+        "tiktok_price": 8000,
         "category": "sweaters",
         "image": "/img/art-120.avif",
         "talles": ["S-M"]
