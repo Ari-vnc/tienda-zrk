@@ -145,7 +145,8 @@ function buildProductCard(p, index) {
         conjuntos: "Conjuntos",
         buzos: "Buzos",
         camperas: "Camperas",
-        sweaters: "Sweaters"
+        sweaters: "Sweaters",
+        "baby-tee": "Baby tee"
     }[p.category] || p.category;
 
     // Build talle buttons HTML
@@ -166,6 +167,8 @@ function buildProductCard(p, index) {
            </div>`
         : `<p class="product-price">${fmt(p.price)}</p>`;
 
+    const isDisponible = p.disponible !== false; // true por defecto si no está definido
+
     card.innerHTML = `
         <div class="product-img-wrap">
             <img
@@ -185,8 +188,8 @@ function buildProductCard(p, index) {
                 <p class="talle-label">Talle</p>
                 <div class="talle-options">${talleButtons}</div>
             </div>
-            <button class="add-to-cart-btn" type="button" data-sku="${p.sku}">
-                Agregar al carrito
+            <button class="add-to-cart-btn${isDisponible ? "" : " out-of-stock"}" type="button" data-sku="${p.sku}"${isDisponible ? "" : " disabled"}>
+                ${isDisponible ? "Agregar al carrito" : "Sin stock"}
             </button>
         </div>
     `;
@@ -200,11 +203,13 @@ function buildProductCard(p, index) {
         });
     });
 
-    // Add to cart
-    card.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-        const selectedTalle = card.querySelector(".talle-btn.selected")?.dataset.talle || "";
-        addToCart(p, selectedTalle);
-    });
+    // Add to cart (solo si disponible)
+    if (isDisponible) {
+        card.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+            const selectedTalle = card.querySelector(".talle-btn.selected")?.dataset.talle || "";
+            addToCart(p, selectedTalle);
+        });
+    }
 
     return card;
 }

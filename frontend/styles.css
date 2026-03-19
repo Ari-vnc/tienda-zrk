@@ -543,6 +543,14 @@ textarea {
     transform: none;
 }
 
+.add-to-cart-btn.out-of-stock {
+    background: #f0e0e0;
+    color: #a05050;
+    cursor: not-allowed;
+    transform: none;
+    font-style: italic;
+}
+
 .no-products {
     text-align: center;
     padding: 60px 24px;
