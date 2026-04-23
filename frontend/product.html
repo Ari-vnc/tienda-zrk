@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalle de producto — ZARIKOF">
+    <title>Producto — ZARIKOF</title>
+    <link rel="icon" type="image/avif" href="/img/favico.avif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/product.css">
+</head>
+
+<body>
+
+    <!-- ── NAV FLOTANTE ────────────────────────────────────────── -->
+    <header class="navbar scrolled" id="navbar">
+        <div class="navbar-inner">
+            <nav class="nav-left" aria-label="Navegación secundaria">
+                <a href="/" class="nav-link" id="nav-back">← Volver</a>
+            </nav>
+
+            <a href="/" class="navbar-logo" aria-label="ZARIKOF Inicio">
+                <img src="/img/logo.avif" alt="ZARIKOF" class="logo-img"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span class="logo-text" style="display:none">ZARIKOF</span>
+            </a>
+
+            <div class="nav-right">
+                <!-- vacío, sin carrito en la página de detalle -->
+            </div>
+        </div>
+    </header>
+
+    <!-- ── CONTENIDO PRINCIPAL ────────────────────────────────── -->
+    <main class="pd-page" id="productPage">
+
+        <!-- Estado de carga -->
+        <div class="pd-loading" id="pdLoading">
+            <div class="pd-skeleton-img"></div>
+            <div class="pd-skeleton-info">
+                <div class="pd-skeleton-line pd-skeleton-line--title"></div>
+                <div class="pd-skeleton-line pd-skeleton-line--price"></div>
+                <div class="pd-skeleton-line pd-skeleton-line--short"></div>
+                <div class="pd-skeleton-line pd-skeleton-line--btn"></div>
+            </div>
+        </div>
+
+        <!-- Estado de error -->
+        <div class="pd-error" id="pdError" style="display:none">
+            <p class="pd-error-emoji">🔍</p>
+            <h2>Producto no encontrado</h2>
+            <p>El artículo que buscás no existe o fue dado de baja.</p>
+            <a href="/" class="pd-back-btn">Ver todos los productos</a>
+        </div>
+
+        <!-- Detalle del producto -->
+        <div class="pd-detail" id="pdDetail" style="display:none">
+            <!-- Imagen -->
+            <div class="pd-img-wrap">
+                <img id="pdImg" class="pd-img" alt="">
+                <div class="pd-img-placeholder" id="pdImgPlaceholder" style="display:none">🧥</div>
+                <span class="pd-category-badge" id="pdBadge"></span>
+            </div>
+
+            <!-- Info -->
+            <div class="pd-info">
+                <p class="pd-sku" id="pdSku"></p>
+                <h1 class="pd-title" id="pdTitle"></h1>
+                <div class="pd-prices" id="pdPrices"></div>
+
+                <div class="pd-divider"></div>
+
+                <!-- Talles -->
+                <div class="pd-talles" id="pdTalles">
+                    <p class="pd-talles-label">Talle</p>
+                    <div class="pd-talles-options" id="pdTallesOptions"></div>
+                </div>
+
+                <!-- Sin stock -->
+                <div class="pd-out-badge" id="pdOutBadge" style="display:none">
+                    Sin stock temporalmente
+                </div>
+
+                <!-- Cantidad + Agregar al carrito -->
+                <div class="pd-cart-section" id="pdCartSection">
+                    <div class="pd-qty-row">
+                        <span class="pd-qty-label">Cantidad</span>
+                        <div class="pd-qty-ctrl">
+                            <button class="pd-qty-btn" id="pdQtyMinus" type="button" aria-label="Restar">−</button>
+                            <span class="pd-qty-num" id="pdQtyNum">0</span>
+                            <button class="pd-qty-btn" id="pdQtyPlus" type="button" aria-label="Sumar">+</button>
+                        </div>
+                    </div>
+                    <button class="pd-add-btn" id="pdAddBtn" type="button" disabled>
+                        Agregar al carrito
+                    </button>
+                </div>
+
+                <a href="/" class="pd-catalog-link">← Ver todos los productos</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/product.js"></script>
+</body>
+
+</html>

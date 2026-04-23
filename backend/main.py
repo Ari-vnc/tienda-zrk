@@ -71,6 +71,16 @@ async def get_products(request: Request, category: str = None):
     return products
 
 
+@app.get("/api/products/{sku}")
+@limiter.limit(settings.RATE_LIMIT_PER_MINUTE)
+async def get_product_by_sku(request: Request, sku: str):
+    """Devuelve un producto por su SKU. Se genera automáticamente para cada producto del catálogo."""
+    product = next((p for p in products if p["sku"] == sku), None)
+    if not product:
+        raise HTTPException(status_code=404, detail=f"Producto con SKU '{sku}' no encontrado")
+    return product
+
+
 @app.get("/api/config")
 @limiter.limit("30/minute")
 async def get_config(request: Request):
@@ -93,6 +103,17 @@ async def get_live(request: Request):
     }
 
 
+# ── Página de Detalle de Producto ─────────────────────────────────────────────
+
+@app.get("/producto/{sku}")
+async def product_detail_page(sku: str):
+    """Página de detalle de un producto por SKU."""
+    product_path = Path("frontend/product.html")
+    if product_path.is_file():
+        return FileResponse(product_path)
+    raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
 # ── Página Mayorista ───────────────────────────────────────────────────────────
 
 @app.get("/mayorista")
@@ -112,6 +133,17 @@ async def mantenimiento_page():
     mantenimiento_path = Path("frontend/mantenimiento.html")
     if mantenimiento_path.is_file():
         return FileResponse(mantenimiento_path)
+    raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
+# ── Página Envíos ──────────────────────────────────────────────────────────────
+
+@app.get("/envios")
+async def envios_page():
+    """Página de información de envíos."""
+    envios_path = Path("frontend/envios.html")
+    if envios_path.is_file():
+        return FileResponse(envios_path)
     raise HTTPException(status_code=404, detail="Página no encontrada")
 
 

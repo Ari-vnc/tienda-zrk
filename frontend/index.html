@@ -37,8 +37,17 @@
                 <span class="logo-text" style="display:none">ZARIKOF</span>
             </a>
 
-            <!-- Lado derecho: carrito -->
+            <!-- Lado derecho: camión + carrito -->
             <div class="nav-right">
+                <a href="/envios" class="nav-icon-btn" aria-label="Información de envíos" id="shippingBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13" rx="1" />
+                        <path d="M16 8h4l3 5v3h-7V8z" />
+                        <circle cx="5.5" cy="18.5" r="2.5" />
+                        <circle cx="18.5" cy="18.5" r="2.5" />
+                    </svg>
+                </a>
                 <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
                     <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -52,6 +61,17 @@
             </div>
         </div>
     </header>
+
+    <!-- ── CARRITO FLOTANTE MÓVIL ──────────────────────────────── -->
+    <button class="mobile-cart-fab" id="mobileCartBtn" aria-label="Abrir carrito">
+        <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="mobile-cart-badge" id="mobileCartBadge">0</span>
+    </button>
 
     <!-- ── HERO ────────────────────────────────────────────────── -->
     <section class="hero" id="hero">
@@ -127,71 +147,76 @@
                 <span class="cart-total-amount" id="cartTotal">$0</span>
             </div>
 
-            <!-- Formulario de contacto -->
-            <form class="contact-form" id="contactForm" autocomplete="on" novalidate>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">Nombre *</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="Luna" autocomplete="given-name"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Apellido *</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="García" autocomplete="family-name"
-                            required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Teléfono *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="1131095557" inputmode="numeric"
-                        autocomplete="tel" required>
-                </div>
+            <!-- Botón "Finalizar pedido" (visible solo en móvil) -->
+            <button class="finalize-btn" id="finalizeBtn" type="button">Finalizar pedido</button>
 
-                <div class="delivery-section">
-                    <p class="delivery-label">Método de entrega *</p>
-                    <label class="radio-option">
-                        <input type="radio" name="delivery" value="envio"> Envío a domicilio
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="delivery" value="retiro"> Retiro en local
-                    </label>
-                </div>
-
-                <div class="address-group" id="addressGroup" style="display:none">
+            <!-- Formulario de contacto (en móvil se oculta hasta pulsar Finalizar) -->
+            <div class="checkout-form-wrap" id="checkoutFormWrap">
+                <form class="contact-form" id="contactForm" autocomplete="on" novalidate>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="street">Calle *</label>
-                            <input type="text" id="street" name="street" placeholder="Av. Corrientes"
-                                autocomplete="address-line1">
+                            <label for="firstName">Nombre *</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Luna" autocomplete="given-name"
+                                required>
                         </div>
                         <div class="form-group">
-                            <label for="streetNum">Altura *</label>
-                            <input type="text" id="streetNum" name="streetNum" placeholder="1234" inputmode="numeric">
+                            <label for="lastName">Apellido *</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="García" autocomplete="family-name"
+                                required>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">Localidad *</label>
-                            <input type="text" id="city" name="city" placeholder="CABA" autocomplete="address-level2">
-                        </div>
-                        <div class="form-group">
-                            <label for="zip">Código Postal *</label>
-                            <input type="text" id="zip" name="zip" placeholder="1043" inputmode="numeric"
-                                autocomplete="postal-code">
-                        </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="1131095557" inputmode="numeric"
+                            autocomplete="tel" required>
                     </div>
-                </div>
-            </form>
 
-            <button class="whatsapp-btn" id="whatsappBtn" disabled>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                    <path
-                        d="M12 0C5.373 0 0 5.373 0 12c0 2.122.56 4.112 1.539 5.838L0 24l6.338-1.515A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.483-5.072-1.33l-.364-.214-3.762.9.958-3.674-.238-.379A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                </svg>
-                Consultar por WhatsApp
-            </button>
+                    <div class="delivery-section">
+                        <p class="delivery-label">Método de entrega *</p>
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="envio"> Envío a domicilio
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="retiro"> Retiro en local
+                        </label>
+                    </div>
+
+                    <div class="address-group" id="addressGroup" style="display:none">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="street">Calle *</label>
+                                <input type="text" id="street" name="street" placeholder="Av. Corrientes"
+                                    autocomplete="address-line1">
+                            </div>
+                            <div class="form-group">
+                                <label for="streetNum">Altura *</label>
+                                <input type="text" id="streetNum" name="streetNum" placeholder="1234" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Localidad *</label>
+                                <input type="text" id="city" name="city" placeholder="CABA" autocomplete="address-level2">
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Código Postal *</label>
+                                <input type="text" id="zip" name="zip" placeholder="1043" inputmode="numeric"
+                                    autocomplete="postal-code">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <button class="whatsapp-btn" id="whatsappBtn" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.122.56 4.112 1.539 5.838L0 24l6.338-1.515A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.574-.483-5.072-1.33l-.364-.214-3.762.9.958-3.674-.238-.379A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                    </svg>
+                    Consultar por WhatsApp
+                </button>
+            </div>
         </div>
     </aside>
 

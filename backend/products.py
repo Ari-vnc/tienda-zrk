@@ -21,8 +21,8 @@ Para agregar un nuevo producto, copiar el siguiente bloque y completar los campo
 # Ejemplo: "2026-03-15T20:00:00-03:00"
 # Dejar en "" cuando no haya live programado.
 live_config = {
-    "live_start": "2026-03-19T15:50:00-03:00",
-    "live_end": "2026-03-19T16:30:00-03:00",
+    "live_start": "2026-03-21T13:18:00-03:00",
+    "live_end": "2026-03-21T13:20:00-03:00",
 }
 
 products = [
@@ -30,7 +30,7 @@ products = [
     {
         "sku": "CON-2020",
         "title": "Conjunto zarikof ⭐ forever - negro y blanco",
-        "description": "",
+        "description": "Tela darlon",
         "price": 19999,
         "tiktok_price": 17000,
         "category": "conjuntos",

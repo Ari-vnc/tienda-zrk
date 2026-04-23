@@ -36,13 +36,25 @@ const cartTotal     = document.getElementById("cartTotal");
 const whatsappBtn   = document.getElementById("whatsappBtn");
 const contactForm   = document.getElementById("contactForm");
 const addressGroup  = document.getElementById("addressGroup");
-const navbar        = document.getElementById("navbar");
-const instagramLink = document.getElementById("instagramLink");
-const tiktokLink    = document.getElementById("tiktokLink");
-const whatsappLink  = document.getElementById("whatsappLink");
+const navbar            = document.getElementById("navbar");
+const instagramLink     = document.getElementById("instagramLink");
+const tiktokLink        = document.getElementById("tiktokLink");
+const whatsappLink      = document.getElementById("whatsappLink");
+const mobileCartBtn     = document.getElementById("mobileCartBtn");
+const mobileCartBadge   = document.getElementById("mobileCartBadge");
+const finalizeBtn       = document.getElementById("finalizeBtn");
+const checkoutFormWrap  = document.getElementById("checkoutFormWrap");
 
 // ── Init ───────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+    // Restaurar ítems agregados desde la página de detalle
+    const pending = JSON.parse(sessionStorage.getItem("pendingCart") || "[]");
+    if (pending.length) {
+        cart = pending;
+        sessionStorage.removeItem("pendingCart");
+        refreshCart();
+    }
+
     await Promise.all([loadConfig(), loadLiveConfig(), loadProducts()]);
     checkLiveStatus(false);     // sets isLiveActive BEFORE first render
     applyFilter(activeFilter);  // first render with correct live state
@@ -170,17 +182,19 @@ function buildProductCard(p, index) {
     const isDisponible = p.disponible !== false; // true por defecto si no está definido
 
     card.innerHTML = `
-        <div class="product-img-wrap">
-            <img
-                class="product-img"
-                src="${p.image}"
-                alt="${p.title}"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-            >
-            <div class="product-img-placeholder" style="display:none">🧥</div>
-            <span class="product-category-badge">${categoryLabel}</span>
-        </div>
+        <a href="/producto/${p.sku}" class="product-img-link" aria-label="Ver detalle de ${p.title}">
+            <div class="product-img-wrap">
+                <img
+                    class="product-img"
+                    src="${p.image}"
+                    alt="${p.title}"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+                >
+                <div class="product-img-placeholder" style="display:none">🧥</div>
+                <span class="product-category-badge">${categoryLabel}</span>
+            </div>
+        </a>
         <div class="product-info">
             <h3 class="product-title">${p.title}</h3>
             ${priceHTML}
@@ -272,9 +286,13 @@ function refreshCart() {
     const totalItems = cart.reduce((s, i) => s + i.qty, 0);
     const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-    // Badge
+    // Badge (desktop + mobile)
     cartBadge.textContent = totalItems;
     cartBadge.dataset.count = totalItems;
+    if (mobileCartBadge) {
+        mobileCartBadge.textContent = totalItems;
+        mobileCartBadge.dataset.count = totalItems;
+    }
 
     // Empty state
     cartEmpty.style.display = cart.length ? "none" : "flex";
@@ -337,6 +355,10 @@ function closeCartDrawer() {
     cartOverlay.classList.remove("open");
     cartOverlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+
+    // Reset mobile two-step checkout state
+    if (finalizeBtn) finalizeBtn.classList.remove("hidden");
+    if (checkoutFormWrap) checkoutFormWrap.classList.remove("open");
 }
 
 // ── Form Validation ────────────────────────────────────────────
@@ -415,11 +437,25 @@ function setupEventListeners() {
             document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             applyFilter(btn.dataset.filter);
+            const filtersBar = document.getElementById("catalogo");
+            const navH = navbar.offsetHeight;
+            const filtersH = filtersBar ? filtersBar.offsetHeight : 0;
+            const top = productsGrid.getBoundingClientRect().top + window.scrollY - navH - filtersH;
+            window.scrollTo({ top, behavior: "smooth" });
         });
     });
 
     // Cart open/close
     cartBtn.addEventListener("click", openCart);
+    if (mobileCartBtn) mobileCartBtn.addEventListener("click", openCart);
+
+    // Finalize button (mobile two-step)
+    if (finalizeBtn) {
+        finalizeBtn.addEventListener("click", () => {
+            finalizeBtn.classList.add("hidden");
+            checkoutFormWrap.classList.add("open");
+        });
+    }
     closeCart.addEventListener("click", closeCartDrawer);
     cartOverlay.addEventListener("click", closeCartDrawer);
 

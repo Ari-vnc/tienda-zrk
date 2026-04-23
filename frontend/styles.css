@@ -168,6 +168,23 @@ textarea {
 .nav-right {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border-radius: var(--radius-full);
+    color: var(--clr-text-2);
+    transition: background var(--transition), color var(--transition);
+}
+
+.nav-icon-btn:hover {
+    background: var(--clr-blush);
+    color: var(--clr-text);
 }
 
 .cart-btn {
@@ -409,6 +426,11 @@ textarea {
 .product-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-md);
+}
+
+.product-img-link {
+    display: block;
+    cursor: pointer;
 }
 
 .product-img-wrap {
@@ -987,9 +1009,141 @@ textarea {
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
+
+/* Finalize button: hidden in desktop */
+.finalize-btn {
+    display: none;
+}
+
+/* ── Mobile Floating Cart FAB ────────────────────────────────── */
+.mobile-cart-fab {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .navbar-inner {
         padding: 0 16px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .nav-left {
+        display: none;
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .mobile-cart-fab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 120;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--clr-text);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 6px 28px rgba(26, 20, 16, 0.32);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mobile-cart-fab:active {
+        transform: translateX(-50%) scale(0.92);
+    }
+
+    .mobile-cart-fab .cart-icon {
+        stroke: #fff;
+    }
+
+    .mobile-cart-badge {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        background: var(--clr-nude-dark);
+        color: #fff;
+        font-size: 0.68rem;
+        font-weight: 700;
+        min-width: 20px;
+        height: 20px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+        font-family: 'Raleway', system-ui, sans-serif;
+    }
+
+    .mobile-cart-badge[data-count="0"] {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    .mobile-cart-badge:not([data-count="0"]) {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Finalizar pedido: two-step checkout on mobile */
+    .finalize-btn {
+        display: block;
+        width: 100%;
+        padding: 14px 20px;
+        background: var(--clr-text);
+        color: #fff;
+        border-radius: var(--radius-sm);
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        border: none;
+        transition: background var(--transition), transform var(--transition);
+    }
+
+    .finalize-btn:active {
+        transform: scale(0.98);
+    }
+
+    .finalize-btn.hidden {
+        display: none;
+    }
+
+    .checkout-form-wrap {
+        display: none;
+    }
+
+    .checkout-form-wrap.open {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .filters-section {
+        padding: 10px 0;
+    }
+
+    .filters-inner {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    .filters-inner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-btn {
+        flex-shrink: 0;
     }
 
     .nav-link span {
@@ -1059,8 +1213,15 @@ textarea {
 }
 
 @keyframes liveFadeIn {
-    from { opacity: 0; transform: translateY(-100%); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Punto rojo pulsante */
@@ -1075,9 +1236,17 @@ textarea {
 }
 
 @keyframes livePulse {
-    0%   { box-shadow: 0 0 0 0 rgba(255, 0, 51, 0.7); }
-    60%  { box-shadow: 0 0 0 8px rgba(255, 0, 51, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 0, 51, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 51, 0.7);
+    }
+
+    60% {
+        box-shadow: 0 0 0 8px rgba(255, 0, 51, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 51, 0);
+    }
 }
 
 /* Cuando el banner live está visible, desplazar navbar hacia abajo */
@@ -1119,4 +1288,4 @@ body.live-active .hero {
 .price-tiktok::before {
     content: '🎵';
     font-size: 0.9rem;
-}
+}
