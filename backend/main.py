@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
@@ -145,6 +145,50 @@ async def envios_page():
     if envios_path.is_file():
         return FileResponse(envios_path)
     raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
+# ── Sitemap XML ────────────────────────────────────────────────────────────
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    """Genera un sitemap XML dinámico con rutas estáticas y productos."""
+    import xml.etree.ElementTree as ET
+    from datetime import date
+
+    base_url = settings.SITE_URL
+    today = date.today().isoformat()
+
+    urlset = ET.Element(
+        "urlset",
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9",
+    )
+
+    # ── Rutas estáticas ──
+    static_routes = [
+        {"loc": "/", "priority": "1.0", "changefreq": "daily"},
+        {"loc": "/mayorista", "priority": "0.8", "changefreq": "weekly"},
+        {"loc": "/envios", "priority": "0.6", "changefreq": "monthly"},
+    ]
+
+    for route in static_routes:
+        url_el = ET.SubElement(urlset, "url")
+        ET.SubElement(url_el, "loc").text = f"{base_url}{route['loc']}"
+        ET.SubElement(url_el, "lastmod").text = today
+        ET.SubElement(url_el, "changefreq").text = route["changefreq"]
+        ET.SubElement(url_el, "priority").text = route["priority"]
+
+    # ── Rutas dinámicas de productos ──
+    for product in products:
+        url_el = ET.SubElement(urlset, "url")
+        ET.SubElement(url_el, "loc").text = f"{base_url}/producto/{product['sku']}"
+        ET.SubElement(url_el, "lastmod").text = today
+        ET.SubElement(url_el, "changefreq").text = "weekly"
+        ET.SubElement(url_el, "priority").text = "0.7"
+
+    xml_bytes = ET.tostring(urlset, encoding="unicode", xml_declaration=False)
+    xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_bytes
+
+    return Response(content=xml_content, media_type="application/xml")
 
 
 # ── Static Files ───────────────────────────────────────────────────────────────

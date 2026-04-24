@@ -24,6 +24,9 @@ class Settings:
     # Security Headers
     ENABLE_SECURITY_HEADERS: bool = os.getenv("ENABLE_SECURITY_HEADERS", "true").lower() == "true"
 
+    # Site URL (for sitemap generation)
+    SITE_URL: str = os.getenv("SITE_URL", "https://zarikof.com.ar").rstrip("/")
+
     # Environment
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
     DEBUG: bool = os.getenv("DEBUG", "false").lower() == "true"
