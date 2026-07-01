@@ -53,15 +53,40 @@
         .navbar {
             position: sticky;
             top: 0;
-            background: rgba(250, 249, 248, 0.9);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--clr-border);
-            padding: 0 24px;
-            height: 64px;
+            z-index: 100;
+        }
+
+        .top-banner {
+            background: #1a1410;
+            color: #fff;
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            height: 32px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            z-index: 100;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .navbar-row {
+            height: 64px;
+            background: rgba(250, 249, 248, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .navbar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 16px;
         }
 
         .logo-text {
@@ -78,18 +103,51 @@
             object-fit: contain;
         }
 
-        .nav-back {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--clr-text-2);
+        .navbar-logo {
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
+            justify-content: flex-start;
         }
 
-        .nav-back:hover {
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--clr-text-2);
+            padding: 6px 12px;
+            border-radius: 9999px;
+            transition: color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
             color: var(--clr-text);
+            background: var(--clr-blush);
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-inner {
+                grid-template-columns: auto 1fr auto;
+                padding: 0 16px;
+            }
+            .navbar-menu {
+                display: none;
+            }
+            .navbar-logo {
+                grid-column: 2;
+                justify-content: center;
+            }
         }
 
         /* Hero */
@@ -318,14 +376,42 @@
 
     <!-- Navbar -->
     <header class="navbar">
-        <a href="/" class="nav-back">
-            ← Volver
-        </a>
-        <a href="/" aria-label="ZARIKOF">
-            <img src="img/logo.avif" alt="ZARIKOF" class="logo-img"
-                onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<span class=\'logo-text\'>ZARIKOF</span>')">
-        </a>
-        <div style="width:60px"></div>
+        <!-- Barra superior: envíos -->
+        <div class="top-banner">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="1" />
+                <path d="M16 8h4l3 5v3h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            Envios a todo el pais
+        </div>
+
+        <!-- Fila del navbar -->
+        <div class="navbar-row">
+            <div class="navbar-inner">
+                <!-- Izquierda: logo -->
+                <a href="/" class="navbar-logo" aria-label="ZARIKOF Inicio">
+                    <img src="img/logo.avif" alt="ZARIKOF" class="logo-img"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <span class="logo-text" style="display:none">ZARIKOF</span>
+                </a>
+
+                <!-- Centro: menú de navegación -->
+                <nav class="navbar-menu" aria-label="Navegación principal">
+                    <a href="/#catalogo" class="nav-link">Ninos</a>
+                    <a href="/#catalogo" class="nav-link">Mujer</a>
+                    <a href="/mayorista" class="nav-link" style="color: var(--clr-text); background: var(--clr-blush);">Mayorista</a>
+                    <a href="/#footer" class="nav-link">Nosotros</a>
+                </nav>
+
+                <!-- Derecha: volver -->
+                <div class="nav-right">
+                    <a href="/" class="nav-link">← Volver</a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Hero -->

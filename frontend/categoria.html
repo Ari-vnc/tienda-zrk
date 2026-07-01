@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ZARIKOF - Indumentaria mayorista y minorista">
-    <title>ZARIKOF — Indumentaria</title>
-    <link rel="icon" type="image/avif" href="img/favico.avif">
+    <meta name="description" content="ZARIKOF - Explora nuestra colección de ropa por categoría">
+    <title>Categoría — ZARIKOF</title>
+    <link rel="icon" type="image/avif" href="/img/favico.avif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/categoria.css">
 </head>
 
 <body>
@@ -41,17 +42,17 @@
             <div class="navbar-inner">
                 <!-- Izquierda: logo -->
                 <a href="/" class="navbar-logo" aria-label="ZARIKOF Inicio">
-                    <img src="img/logo.avif" alt="ZARIKOF" class="logo-img" id="logo-img"
+                    <img src="/img/logo.avif" alt="ZARIKOF" class="logo-img" id="logo-img"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
                     <span class="logo-text" style="display:none">ZARIKOF</span>
                 </a>
 
                 <!-- Centro: menú de navegación -->
                 <nav class="navbar-menu" aria-label="Navegación principal">
-                    <a href="/#ninos" class="nav-link" id="nav-mayorista">Niños</a>
+                    <a href="/mayorista" class="nav-link" id="nav-mayorista">Niños</a>
                     <a href="/#catalogo" class="nav-link" id="nav-mujer">Mujer</a>
                     <a href="/#noticias" class="nav-link" id="nav-noticia">Noticias</a>
-                    <a href="/mayorista" class="nav-link" id="nav-mayorista">Mayorista</a>
+                    <a href="/mayorista" class="nav-link" id="nav-mayorista2">Mayorista</a>
                     <a href="#footer" class="nav-link" id="nav-nosotros">Contacto</a>
                 </nav>
 
@@ -92,146 +93,144 @@
         <span class="mobile-cart-badge" id="mobileCartBadge">0</span>
     </button>
 
-    <!-- ── HERO ────────────────────────────────────────────────── -->
-    <section class="hero" id="hero" aria-label="Hero principal">
+    <!-- ── BREADCRUMB ─────────────────────────────────────────── -->
+    <nav class="cat-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="separator">›</span>
+        <span class="current" id="breadcrumbCategory">Categoría</span>
+    </nav>
 
-        <!-- Imagen de la modelo superpuesta -->
-        <div class="hero-model-overlay">
-            <img src="img/modelo-conjunto-zarikofforever-verde-blanco-Photoroom.avif" alt="Modelo con conjunto Zarikof"
-                class="hero-model-img">
-        </div>
-
-        <!-- Tarjeta verde semitransparente -->
-        <div class="hero-card">
-
-            <!-- Texto central -->
-            <div class="hero-card-content">
-                <h1 class="hero-card-title">Coleccion<br>otoño invierno</h1>
-                <a href="#catalogo" class="hero-card-cta">ver mas</a>
-            </div>
-
-            <!-- Puntos decorativos -->
-            <div class="hero-dots" aria-hidden="true">
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-            </div>
-
-            <!-- Barras verticales animadas -->
-            <div class="hero-bars" aria-hidden="true">
-                <div class="hero-bar hero-bar--light"></div>
-                <div class="hero-bar hero-bar--green"></div>
-            </div>
-        </div>
-    </section>
-    <section class="lineas">
-        <div class="circulos"><img src="img/logo-zarikofforever.avif" alt=""></div>
-        <div class="circulos"><img id="edit-img" src="img/logo-zrk.avif" alt=""></div>
-        <div class="circulos"><img src="img/logo-zarikofQueen.avif" alt=""></div>
-        <div class="circulos"><img src="img/logo-moncton.avif" alt=""></div>
-    </section>
-
-
-    <!-- ── FILTROS ─────────────────────────────────────────────── -->
-    <section class="filters-section" id="catalogo">
-        <div class="filters-inner">
-            <button class="filter-btn active" data-filter="todas" id="filter-todas">Todas</button>
-            <button class="filter-btn" data-filter="conjuntos" id="filter-conjuntos">Conjuntos</button>
-            <button class="filter-btn" data-filter="buzos" id="filter-buzos">Buzos</button>
-            <button class="filter-btn" data-filter="camperas" id="filter-camperas">Camperas</button>
-            <button class="filter-btn" data-filter="sweaters" id="filter-sweaters">Sweaters</button>
-            <button class="filter-btn" data-filter="baby-tee" id="filter-baby-tee">Baby tee</button>
-        </div>
-    </section>
-
-    <section class="selector-categoria">
-        <a href="/categoria/conjuntos" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <img src="img/conjunto-zarikofforever-grisblanco.avif" alt="">
-            <h3 class="titulo-categoria">Conjuntos</h3>
-        </a>
-        <a href="/categoria/camperas" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <img src="img/modelo-campera-roma.avif" alt="">
-            <h3 class="titulo-categoria">Camperas</h3>
-        </a>
-        <a href="/categoria/buzos" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Buzos</h3>
-        </a>
-        <a href="/categoria/remeras" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Remeras</h3>
-        </a>
-        <a href="/categoria/sweaters" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Sweaters</h3>
-        </a>
-        <a href="/categoria/joggings" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Joggings</h3>
-        </a>
-    </section>
-    <!-- ── GRID DE PRODUCTOS ───────────────────────────────────── -->
-    <main class="products-section">
-        <h3 class="titulo-seccion-productos">Productos Destacados</h3>
-        <div class="products-grid" id="productsGrid">
-            <!-- Skeleton loaders -->
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-        </div>
-        <p class="no-products" id="noProducts" style="display:none">
-            No hay productos en esta categoría.
-        </p>
-    </main>
-    <!-- UBICACION -->
-    <div class="ubicacion-container">
-        <section class="ubicacion">
-            <span class="etiquetas-titulo">📍 Local</span>
-            <h2 style="padding-left: inherit; margin-top: 15px;">Visitanos o pedi online</h2>
-            <p style="padding-left: inherit;">Compra desde la web, coordina tu pedido o encontranos en nuestro local</p>
-            <div class="filters-local">
-                <span style="background-color: rgb(209 236 253); color: rgb(0 31 255);" class="etiquetas">🛒 Compra
-                    noline</span>
-                <span style="background-color: rgb(212 255 183); color:rgb(5 75 0);" class="etiquetas">🛍️ Retiro en
-                    tienda</span>
-                <span style="background-color: rgb(253 230 181); color: rgb(103 95 0);" class="etiquetas">🚚 Envios en
-                    24hs</span>
-            </div>
-            <iframe class="iframe-maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.0508808936465!2d-58.48173272445723!3d-34.62815447294545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9861c6991db%3A0x5b0e93f4796e670e!2szarikof!5e0!3m2!1ses-419!2sar!4v1782744447345!5m2!1ses-419!2sar"
-                width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </section class="tarjetas">
-        <div class="tarjetas-derecha">
-            <div style="background-color: #ffffff;" class="tarjetas-fondo">
-                <span class="etiqueta-titulo" style="color: #666;">Destacado</span>
-                <h3 class="titulo-tarjeta">Nueva Colección</h3>
-                <p class="texto-tarjeta">Descubre los últimos ingresos de la temporada</p>
-            </div>
-            <div style="background-color: #96e3fd;" class="tarjetas-fondo">
-                <span class="etiqueta-titulo" style="color: #004d66;">Destacados</span>
-                <h3 class="titulo-tarjeta">Vestite de la azul y blanca</h3>
-                <p class="texto-tarjeta">Tenemos el conjunto perfecto para alentar a la scaloneta</p>
-                <div class="contenedor-etiquetas-tarjeta">
-                    <span class="etiquetas" style="background-color: rgb(212 255 183); color:rgb(5 75 0);">Stock
-                        disponible</span>
-                </div>
-                <a href="#" class="boton-tarjeta">Ir al producto ></a>
-                <span class="emogi-tarjetas">⚽</span>
-            </div>
-            <div style="background-color: #2d9dff;" class="tarjetas-fondo">
-                <span class="etiqueta-titulo" style="color: #e6f2ff;">Combos</span>
-                <h3 class="titulo-tarjeta" style="color: #fff;">Arma tu box ganador</h3>
-                <p class="texto-tarjeta" style="color: #f0f8ff;">Combina prendas y llevalas al mejor precio</p>
-                <div class="contenedor-etiquetas-tarjeta">
-                    <span class="etiquetas"
-                        style="background-color: rgb(253 230 181); color: rgb(103 95 0);">Envíos</span>
-                </div>
-                <a href="#" class="boton-tarjeta" style="background: #fff; color: #2d9dff;">Ver catálogo</a>
-                <span class="emogi-tarjetas">🏆</span>
-            </div>
+    <!-- ── SEARCH BAR ─────────────────────────────────────────── -->
+    <div class="cat-search-bar">
+        <div class="cat-search-wrap">
+            <svg class="cat-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="cat-search-input" id="catSearchInput"
+                placeholder="Buscar productos en esta categoría..." autocomplete="off">
         </div>
     </div>
+
+    <!-- ── MAIN LAYOUT ────────────────────────────────────────── -->
+    <div class="cat-page-layout">
+
+        <!-- Sidebar overlay (mobile) -->
+        <div class="cat-sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="cat-sidebar" id="catSidebar">
+            <!-- Close button (mobile) -->
+            <div class="cat-mobile-close">
+                <button class="cat-mobile-close-btn" id="closeSidebar" aria-label="Cerrar filtros">✕</button>
+            </div>
+
+            <!-- Categorías -->
+            <div class="cat-filter-group">
+                <div class="cat-filter-header" data-filter-toggle="categories">
+                    Categorías
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <div class="cat-filter-body" id="categoriesFilter">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Talles -->
+            <div class="cat-filter-group">
+                <div class="cat-filter-header" data-filter-toggle="talles">
+                    Talles
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <div class="cat-filter-body" id="tallesFilter">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Precio -->
+            <div class="cat-filter-group">
+                <div class="cat-filter-header" data-filter-toggle="price">
+                    Precio
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <div class="cat-filter-body" id="priceFilter">
+                    <div class="cat-price-inputs">
+                        <input type="number" class="cat-price-input" id="priceMin" placeholder="Mín">
+                        <span class="cat-price-separator">—</span>
+                        <input type="number" class="cat-price-input" id="priceMax" placeholder="Máx">
+                    </div>
+                    <button class="cat-price-apply" id="priceApply" type="button">Aplicar</button>
+                </div>
+            </div>
+
+            <!-- Disponibilidad -->
+            <div class="cat-filter-group">
+                <div class="cat-filter-header" data-filter-toggle="disponibilidad">
+                    Disponibilidad
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <div class="cat-filter-body" id="disponibilidadFilter">
+                    <div class="cat-toggle-row">
+                        <span>Solo disponibles</span>
+                        <label class="cat-toggle-switch">
+                            <input type="checkbox" id="disponibleToggle">
+                            <span class="cat-toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Products Area -->
+        <section class="cat-products-area">
+            <div class="cat-products-header">
+                <div>
+                    <h1 class="cat-products-title" id="categoryTitle">Cargando...</h1>
+                    <span class="cat-products-count" id="productsCount"></span>
+                </div>
+                <select class="cat-sort-select" id="sortSelect">
+                    <option value="default">Ordenar por</option>
+                    <option value="price-asc">Precio: menor a mayor</option>
+                    <option value="price-desc">Precio: mayor a menor</option>
+                    <option value="name-asc">Nombre: A-Z</option>
+                    <option value="name-desc">Nombre: Z-A</option>
+                </select>
+            </div>
+
+            <!-- Active filters -->
+            <div class="cat-active-filters" id="activeFilters"></div>
+
+            <!-- Products grid -->
+            <div class="cat-products-grid" id="catProductsGrid">
+                <!-- Skeleton loaders -->
+                <div class="cat-skeleton"></div>
+                <div class="cat-skeleton"></div>
+                <div class="cat-skeleton"></div>
+                <div class="cat-skeleton"></div>
+                <div class="cat-skeleton"></div>
+                <div class="cat-skeleton"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── Mobile filter button ───────────────────────────────── -->
+    <button class="cat-mobile-filter-btn" id="mobileFilterBtn" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+        </svg>
+        Filtros
+    </button>
+
     <!-- ── CARRITO DRAWER ──────────────────────────────────────── -->
     <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
 
@@ -272,7 +271,7 @@
             <!-- Botón "Finalizar pedido" (visible solo en móvil) -->
             <button class="finalize-btn" id="finalizeBtn" type="button">Finalizar pedido</button>
 
-            <!-- Formulario de contacto (en móvil se oculta hasta pulsar Finalizar) -->
+            <!-- Formulario de contacto -->
             <div class="checkout-form-wrap" id="checkoutFormWrap">
                 <form class="contact-form" id="contactForm" autocomplete="on" novalidate>
                     <div class="form-row">
@@ -348,8 +347,6 @@
     <!-- ── FOOTER ──────────────────────────────────────────────── -->
     <footer class="footer" id="footer">
         <div class="footer-inner">
-
-            <!-- Izquierda: QR AFIP -->
             <div class="footer-col footer-col-afip">
                 <p class="footer-label">Datos Fiscales</p>
                 <a href="http://qr.afip.gob.ar/?qr=UzEvOjT15qMCms_eFzrYNg,," target="_F960AFIPInfo" class="afip-link">
@@ -358,8 +355,6 @@
                 </a>
             </div>
 
-
-            <!-- Centro: enlaces -->
             <div class="footer-col footer-col-links">
                 <p class="footer-label">Información</p>
                 <ul class="footer-links">
@@ -370,11 +365,9 @@
                 </ul>
             </div>
 
-            <!-- Derecha: redes sociales -->
             <div class="footer-col footer-col-social">
                 <p class="footer-label">Seguinos</p>
                 <div class="social-links">
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link"
                         aria-label="Instagram de ZARIKOF" id="instagramLink">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -385,8 +378,6 @@
                         </svg>
                         <span>Instagram</span>
                     </a>
-
-                    <!-- TikTok -->
                     <a href="https://www.tiktok.com/@nuva" target="_blank" rel="noopener noreferrer" class="social-link"
                         aria-label="TikTok de ZARIKOF" id="tiktokLink">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -395,8 +386,6 @@
                         </svg>
                         <span>TikTok</span>
                     </a>
-
-                    <!-- WhatsApp -->
                     <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer"
                         class="social-link social-link--wa" aria-label="WhatsApp de ZARIKOF" id="whatsappLink">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
@@ -417,7 +406,7 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="/static/categoria.js"></script>
 </body>
 
 </html>

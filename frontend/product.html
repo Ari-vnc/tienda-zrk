@@ -19,19 +19,40 @@
 
     <!-- ── NAV FLOTANTE ────────────────────────────────────────── -->
     <header class="navbar scrolled" id="navbar">
-        <div class="navbar-inner">
-            <nav class="nav-left" aria-label="Navegación secundaria">
-                <a href="/" class="nav-link" id="nav-back">← Volver</a>
-            </nav>
+        <!-- Barra superior: envíos -->
+        <div class="top-banner">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="1" />
+                <path d="M16 8h4l3 5v3h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+            Envios a todo el pais
+        </div>
 
-            <a href="/" class="navbar-logo" aria-label="ZARIKOF Inicio">
-                <img src="/img/logo.avif" alt="ZARIKOF" class="logo-img"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-                <span class="logo-text" style="display:none">ZARIKOF</span>
-            </a>
+        <!-- Fila del navbar -->
+        <div class="navbar-row">
+            <div class="navbar-inner">
+                <!-- Izquierda: logo -->
+                <a href="/" class="navbar-logo" aria-label="ZARIKOF Inicio">
+                    <img src="/img/logo.avif" alt="ZARIKOF" class="logo-img"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <span class="logo-text" style="display:none">ZARIKOF</span>
+                </a>
 
-            <div class="nav-right">
-                <!-- vacío, sin carrito en la página de detalle -->
+                <!-- Centro: menú de navegación -->
+                <nav class="navbar-menu" aria-label="Navegación principal">
+                    <a href="/#catalogo" class="nav-link">Ninos</a>
+                    <a href="/#catalogo" class="nav-link">Mujer</a>
+                    <a href="/mayorista" class="nav-link">Mayorista</a>
+                    <a href="/#footer" class="nav-link">Nosotros</a>
+                </nav>
+
+                <!-- Derecha: volver -->
+                <div class="nav-right">
+                    <a href="/" class="nav-link" id="nav-back">← Volver</a>
+                </div>
             </div>
         </div>
     </header>

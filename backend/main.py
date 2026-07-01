@@ -51,6 +51,7 @@ async def add_security_headers(request: Request, call_next):
             "img-src 'self' data: http: https: blob:; "
             "font-src 'self' https://fonts.gstatic.com; "
             "connect-src 'self'; "
+            "frame-src 'self' https://www.google.com; "
             "frame-ancestors 'none';"
         )
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
@@ -111,6 +112,17 @@ async def product_detail_page(sku: str):
     product_path = Path("frontend/product.html")
     if product_path.is_file():
         return FileResponse(product_path)
+    raise HTTPException(status_code=404, detail="Página no encontrada")
+
+
+# ── Página de Categoría ───────────────────────────────────────────────────────
+
+@app.get("/categoria/{nombre}")
+async def categoria_page(nombre: str):
+    """Página de productos filtrados por categoría."""
+    categoria_path = Path("frontend/categoria.html")
+    if categoria_path.is_file():
+        return FileResponse(categoria_path)
     raise HTTPException(status_code=404, detail="Página no encontrada")
 
 
