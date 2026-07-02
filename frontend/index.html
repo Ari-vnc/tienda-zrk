@@ -135,54 +135,36 @@
     </section>
 
 
-    <!-- ── FILTROS ─────────────────────────────────────────────── -->
-    <section class="filters-section" id="catalogo">
-        <div class="filters-inner">
-            <button class="filter-btn active" data-filter="todas" id="filter-todas">Todas</button>
-            <button class="filter-btn" data-filter="conjuntos" id="filter-conjuntos">Conjuntos</button>
-            <button class="filter-btn" data-filter="buzos" id="filter-buzos">Buzos</button>
-            <button class="filter-btn" data-filter="camperas" id="filter-camperas">Camperas</button>
-            <button class="filter-btn" data-filter="sweaters" id="filter-sweaters">Sweaters</button>
-            <button class="filter-btn" data-filter="baby-tee" id="filter-baby-tee">Baby tee</button>
+    <!-- ── PRODUCTOS DESTACADOS ────────────────────────────────── -->
+    <section class="featured-section" id="catalogo">
+        <div class="featured-inner">
+            <div class="featured-header">
+                <div class="featured-header-text">
+                    <span class="featured-label">✨ Destacados</span>
+                    <h2 class="featured-title">Productos que amamos</h2>
+                    <p class="featured-subtitle">Los más elegidos de la temporada</p>
+                </div>
+                <a href="/categoria/conjuntos" class="featured-view-all" id="viewAllBtn">
+                    Ver todo el catálogo
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+            <div class="featured-scroll-wrap">
+                <div class="featured-grid" id="featuredGrid">
+                    <!-- Skeleton loaders -->
+                    <div class="featured-skeleton"></div>
+                    <div class="featured-skeleton"></div>
+                    <div class="featured-skeleton"></div>
+                    <div class="featured-skeleton"></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="selector-categoria">
-        <a href="/categoria/conjuntos" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <img src="img/conjunto-zarikofforever-grisblanco.avif" alt="">
-            <h3 class="titulo-categoria">Conjuntos</h3>
-        </a>
-        <a href="/categoria/camperas" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <img src="img/modelo-campera-roma.avif" alt="">
-            <h3 class="titulo-categoria">Camperas</h3>
-        </a>
-        <a href="/categoria/buzos" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Buzos</h3>
-        </a>
-        <a href="/categoria/remeras" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Remeras</h3>
-        </a>
-        <a href="/categoria/sweaters" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Sweaters</h3>
-        </a>
-        <a href="/categoria/joggings" class="categoria" style="text-decoration: none; color: inherit; display: block;">
-            <h3 class="titulo-categoria">Joggings</h3>
-        </a>
-    </section>
-    <!-- ── GRID DE PRODUCTOS ───────────────────────────────────── -->
-    <main class="products-section">
-        <h3 class="titulo-seccion-productos">Productos Destacados</h3>
-        <div class="products-grid" id="productsGrid">
-            <!-- Skeleton loaders -->
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-            <div class="product-skeleton"></div>
-        </div>
-        <p class="no-products" id="noProducts" style="display:none">
-            No hay productos en esta categoría.
-        </p>
-    </main>
     <!-- UBICACION -->
     <div class="ubicacion-container">
         <section class="ubicacion">

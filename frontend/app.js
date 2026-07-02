@@ -15,15 +15,14 @@ let config = {
     instagramUrl: "https://www.instagram.com/zariikof/",
     tiktokUrl: "https://www.tiktok.com/@zariikof"
 };
-let activeFilter = "todas";
+
 let liveStart    = null;
 let liveEnd      = null;
 let isLiveActive = false;
 
 // ── DOM refs ───────────────────────────────────────────────────
 const liveBanner    = document.getElementById("liveBanner");
-const productsGrid  = document.getElementById("productsGrid");
-const noProducts    = document.getElementById("noProducts");
+const featuredGrid  = document.getElementById("featuredGrid");
 const cartBadge     = document.getElementById("cartBadge");
 const cartBtn       = document.getElementById("cartBtn");
 const cartDrawer    = document.getElementById("cartDrawer");
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await Promise.all([loadConfig(), loadLiveConfig(), loadProducts()]);
     checkLiveStatus(false);     // sets isLiveActive BEFORE first render
-    applyFilter(activeFilter);  // first render with correct live state
+    renderFeatured();           // render featured products
     setupEventListeners();
     // Re-check live status every 30 seconds
     setInterval(() => checkLiveStatus(true), 30000);
@@ -114,7 +113,7 @@ function checkLiveStatus(rerenderProducts) {
         document.body.classList.remove("live-active");
     }
 
-    if (rerenderProducts) applyFilter(activeFilter);
+    if (rerenderProducts) renderFeatured();
 }
 
 // ── Load Products ──────────────────────────────────────────────
@@ -131,27 +130,42 @@ async function loadProducts() {
 }
 
 
-// ── Render Products ────────────────────────────────────────────
-function renderProducts(products) {
-    // Clear skeletons / previous content
-    productsGrid.innerHTML = "";
+// ── Render Featured Products ───────────────────────────────────
+function renderFeatured() {
+    if (!featuredGrid) return;
+    featuredGrid.innerHTML = "";
 
-    if (!products.length) {
-        noProducts.style.display = "block";
+    // Show up to 8 featured products
+    const featured = allProducts.slice(0, 8);
+
+    if (!featured.length) {
+        featuredGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--clr-text-3);padding:40px 0;">Próximamente…</p>';
         return;
     }
-    noProducts.style.display = "none";
 
-    products.forEach((p, i) => {
-        const card = buildProductCard(p, i);
-        productsGrid.appendChild(card);
+    featured.forEach((p, i) => {
+        const card = buildFeaturedCard(p, i);
+        featuredGrid.appendChild(card);
     });
 }
 
-function buildProductCard(p, index) {
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.style.animationDelay = `${index * 0.05}s`;
+function buildFeaturedCard(p, index) {
+    const card = document.createElement("a");
+    card.className = "featured-card";
+    card.href = `/producto/${p.sku}`;
+    card.style.animationDelay = `${index * 0.07}s`;
+
+    const fmt = (n) => new Intl.NumberFormat("es-AR", {
+        style: "currency", currency: "ARS", minimumFractionDigits: 0
+    }).format(n);
+
+    const hasTiktokPrice = isLiveActive && p.tiktok_price && p.tiktok_price > 0;
+    const priceHTML = hasTiktokPrice
+        ? `<div class="featured-price-wrap">
+               <span class="featured-price-old">${fmt(p.price)}</span>
+               <span class="featured-price-live">${fmt(p.tiktok_price)}</span>
+           </div>`
+        : `<span class="featured-price">${fmt(p.price)}</span>`;
 
     const categoryLabel = {
         conjuntos: "Conjuntos",
@@ -161,80 +175,20 @@ function buildProductCard(p, index) {
         "baby-tee": "Baby tee"
     }[p.category] || p.category;
 
-    // Build talle buttons HTML
-    const talleButtons = (p.talles || []).map((t, i) =>
-        `<button class="talle-btn${i === 0 ? " selected" : ""}" data-talle="${t}" type="button">${t}</button>`
-    ).join("");
-
-    const fmt = (n) => new Intl.NumberFormat("es-AR", {
-        style: "currency", currency: "ARS", minimumFractionDigits: 0
-    }).format(n);
-
-    // Price HTML: show tiktok promo during live, normal otherwise
-    const hasTiktokPrice = isLiveActive && p.tiktok_price && p.tiktok_price > 0;
-    const priceHTML = hasTiktokPrice
-        ? `<div class="price-wrapper">
-               <span class="price-original">${fmt(p.price)}</span>
-               <span class="price-tiktok">${fmt(p.tiktok_price)}</span>
-           </div>`
-        : `<p class="product-price">${fmt(p.price)}</p>`;
-
-    const isDisponible = p.disponible !== false; // true por defecto si no está definido
-
     card.innerHTML = `
-        <a href="/producto/${p.sku}" class="product-img-link" aria-label="Ver detalle de ${p.title}">
-            <div class="product-img-wrap">
-                <img
-                    class="product-img"
-                    src="${p.image}"
-                    alt="${p.title}"
-                    loading="lazy"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-                >
-                <div class="product-img-placeholder" style="display:none">🧥</div>
-                <span class="product-category-badge">${categoryLabel}</span>
-            </div>
-        </a>
-        <div class="product-info">
-            <h3 class="product-title">${p.title}</h3>
+        <div class="featured-card-img">
+            <img src="${p.image}" alt="${p.title}" loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="featured-card-placeholder" style="display:none">🧥</div>
+            <span class="featured-badge">${categoryLabel}</span>
+        </div>
+        <div class="featured-card-body">
+            <h3 class="featured-card-title">${p.title}</h3>
             ${priceHTML}
-            <div class="talle-selector">
-                <p class="talle-label">Talle</p>
-                <div class="talle-options">${talleButtons}</div>
-            </div>
-            <button class="add-to-cart-btn${isDisponible ? "" : " out-of-stock"}" type="button" data-sku="${p.sku}"${isDisponible ? "" : " disabled"}>
-                ${isDisponible ? "Agregar al carrito" : "Sin stock"}
-            </button>
         </div>
     `;
 
-    // Talle selection
-    const opts = card.querySelectorAll(".talle-btn");
-    opts.forEach(btn => {
-        btn.addEventListener("click", () => {
-            opts.forEach(b => b.classList.remove("selected"));
-            btn.classList.add("selected");
-        });
-    });
-
-    // Add to cart (solo si disponible)
-    if (isDisponible) {
-        card.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-            const selectedTalle = card.querySelector(".talle-btn.selected")?.dataset.talle || "";
-            addToCart(p, selectedTalle);
-        });
-    }
-
     return card;
-}
-
-// ── Filter ─────────────────────────────────────────────────────
-function applyFilter(filter) {
-    activeFilter = filter;
-    const filtered = filter === "todas"
-        ? allProducts
-        : allProducts.filter(p => p.category === filter);
-    renderProducts(filtered);
 }
 
 // ── Cart Operations ────────────────────────────────────────────
@@ -431,19 +385,7 @@ function buildWhatsAppMessage() {
 
 // ── Event Listeners ────────────────────────────────────────────
 function setupEventListeners() {
-    // Filter buttons
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            applyFilter(btn.dataset.filter);
-            const filtersBar = document.getElementById("catalogo");
-            const navH = navbar.offsetHeight;
-            const filtersH = filtersBar ? filtersBar.offsetHeight : 0;
-            const top = productsGrid.getBoundingClientRect().top + window.scrollY - navH - filtersH;
-            window.scrollTo({ top, behavior: "smooth" });
-        });
-    });
+    // (Filter buttons removed — featured products only)
 
     // Cart open/close
     cartBtn.addEventListener("click", openCart);
