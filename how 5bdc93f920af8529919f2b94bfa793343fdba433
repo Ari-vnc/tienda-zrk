@@ -1,0 +1,191 @@
+[33mcommit f98e90936927830c5e1c417ebb2d6208e0b5997d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Thu Jul 2 14:22:25 2026 -0300
+
+    seccion de destacados
+
+[33mcommit 5bdc93f920af8529919f2b94bfa793343fdba433[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Jul 1 12:38:54 2026 -0300
+
+    enpoint categorias y filtros agregados
+
+[33mcommit d7ee86be72df9b6e4335d77c890ff027d803d9ab[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Fri Apr 24 16:25:34 2026 -0300
+
+    sitemap agregado
+
+[33mcommit aa7ecdef872b3dc0cc4abc15fcf886d13dedf63c[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Thu Apr 23 16:29:46 2026 -0300
+
+    Modificaciones en filtros y carrito para vista mobil
+
+[33mcommit 99194b1b4a91c719a2388ba631cb59720461194a[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Thu Mar 19 15:35:56 2026 -0300
+
+    articulos agregados y horario de live
+
+[33mcommit 4e382d69130d006921a19822ae3b2025575b34b8[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Sat Mar 14 12:04:33 2026 -0300
+
+    actualizacion live
+
+[33mcommit d46ed968cd84a02aa789063755b7edd6fd79e9d4[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Fri Mar 13 15:03:52 2026 -0300
+
+    sweaters agregados
+
+[33mcommit bbb9229895c56fd35095d9b8427eb9a0d88065c4[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Mar 11 19:30:13 2026 -0300
+
+    renombre carpeta original img
+
+[33mcommit dd07a0b7a00c3de2e5dcecd7c0657f97116bfb82[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Mar 11 19:20:59 2026 -0300
+
+    1.renombre temporal img
+
+[33mcommit 934df0288a8e5a5b60f0dd79c5dec287c1b954c6[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Mar 11 19:03:59 2026 -0300
+
+    correccion de imagenes y filtro
+
+[33mcommit 3685fa849018b6eaf67ed3801aa9ad328a57f163[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Mar 11 13:36:52 2026 -0300
+
+    buzos
+
+[33mcommit c9e50db1c0ace8c907ee0a2b46ef55b77d8aed55[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Mon Mar 9 12:39:50 2026 -0300
+
+    despliegue inicial
+
+[33mcommit c46c44f959ab26d7cedb548d990374d54e1c7367[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Sat Dec 13 19:15:03 2025 -0300
+
+    modifique correo destino
+
+[33mcommit 0cedb1865f053517d86e42b026dac18ce33d5613[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Sat Dec 13 19:14:02 2025 -0300
+
+    modificacion medida mm a cm
+
+[33mcommit 97976bbba551686f4806ca311862720d736e903e[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Wed Dec 10 15:56:47 2025 -0300
+
+    footer agregado
+
+[33mcommit f81a5f650274d291d525efad2ee3ae254d551fda[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Fri Dec 5 00:51:03 2025 -0300
+
+    nuevos productos con pin y unicornios
+
+[33mcommit 6798cce01826ed5fe21b5d1898a215fe2ee64cc4[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Thu Dec 4 21:41:08 2025 -0300
+
+    logo agregado
+
+[33mcommit 88a47803ba78b5123437709fb0a80ad33e9c74d8[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 23:29:45 2025 -0300
+
+    productos actualizados
+
+[33mcommit fec1192e7144f6ee874b10a14e5b405ae1d53131[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 15:23:04 2025 -0300
+
+     reverse por fallos en local
+
+[33mcommit e74b1e082985f030db59960f8b3d0b0ed98c89de[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 15:15:44 2025 -0300
+
+    producto enlazado a bucket de bajo rendimiento
+
+[33mcommit f390c034c32427533bdfc468703c0c0ae9e35c5d[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 14:15:43 2025 -0300
+
+    reduccion de archivos
+
+[33mcommit 55cb4d25e86cf0ae77340057fa252e56c190635a[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 11:07:03 2025 -0300
+
+    optimizacion de cache
+
+[33mcommit cc824ec9117a2250146237e1d70523a1a106ceff[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 09:57:25 2025 -0300
+
+    cambio de formato a avif
+
+[33mcommit ba0d96881afd50341681f404ba3d490a63110233[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 08:49:54 2025 -0300
+
+    Eliminar paso de creación de repositorio ya existente
+
+[33mcommit 9a9b44fd723b79c036d63085d4b70fc4ed05b04c[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 08:18:34 2025 -0300
+
+    Actualizacion de permisos
+
+[33mcommit 86c9447c3766ed0fb5e7e69f6162702f0b8c1239[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 07:59:48 2025 -0300
+
+    Migrar a Artifact Registry y agregar creación automática de repositorio
+
+[33mcommit c6cf7565cc70fb93e217bac750263fcd177d52c1[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Tue Dec 2 00:33:07 2025 -0300
+
+    restauracion
+
+[33mcommit 7510761d21a36fa43f7c80fa98a14ce1fcddd345[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Mon Dec 1 21:53:56 2025 -0300
+
+    repogcp
+
+[33mcommit 6e22b5805f715bc0f2b62f97bb5460337368c26d[m
+Author: Kevin-Ari <arvinari1999@gmail.com>
+Date:   Mon Dec 1 18:06:50 2025 -0300
+
+    k
+
+[33mcommit 0b31c11df97681a11a48a5b2c9700c20a2c69251[m
+Author: Kevin-Ari <arvinari1999@gmail.com>
+Date:   Mon Dec 1 18:03:10 2025 -0300
+
+    prod
+
+[33mcommit a975a40e8a46a2705a0883b075d73842b43ca992[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Mon Dec 1 16:58:20 2025 -0300
+
+    pf
+
+[33mcommit c91d5c34e67cce93c71ed3e709a8bc5a670e5a09[m
+Author: Ari-vnc <dagnerdev@gmail.com>
+Date:   Mon Dec 1 16:00:14 2025 -0300
+
+    landing inicial
