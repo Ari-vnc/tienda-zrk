@@ -268,8 +268,8 @@
 .pd-out-badge {
     display: inline-block;
     padding: 8px 16px;
-    background: #f0e0e0;
-    color: #a05050;
+    background: var(--clr-danger-bg);
+    color: var(--clr-danger-text);
     border-radius: var(--radius-sm);
     font-size: 0.82rem;
     font-weight: 600;
